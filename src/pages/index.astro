@@ -1,0 +1,154 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+
+---
+
+<Layout title="Inicio">
+	
+
+	<section class="home">
+		<div class="form_container">
+			<i class="uil uil-times form_close"></i>
+			<!-- Login -->
+
+			<div class="form login_form">
+				<form action="#">
+					<h2>Inicio de Sesión</h2>
+					<div class="input_box">
+						<input
+							type="text"
+							placeholder="Ingresa tu Email"
+							name="Email"
+							required
+						/>
+						<i class="uil uil-envelope-alt email"></i>
+					</div>
+
+					<div class="input_box">
+						<input
+							type="password"
+							placeholder="Ingresa tu contraseña"
+							name="Contraseña"
+							required
+						/>
+						<i class="uil uil-lock password"></i>
+						<i class="uil uil-eye-slash pw_hide"></i>
+					</div>
+					<div class="option_field">
+						<span class="checkbox">
+							<input type="checkbox" id="check" />
+							<label for="check">Recordarme</label>
+						</span>
+
+						<a href="#" class="forgot_pw"
+							>¿Olvidaste tu contraseña?</a
+						>
+					</div>
+
+					<button class="button">Iniciar Sesión</button>
+					<div class="login_signup">
+						¿No tienes una cuenta? <a href="#" id="signup"
+							>Registrarse</a>
+					</div>
+				</form>
+			</div>
+
+			<!-- Registro-->
+			<div class="form signup_form">
+				<form action="#">
+					<h2>Registro</h2>
+					<div class="input_box">
+						<input
+							type="text"
+							placeholder="Ingresa tu Nombre"
+							name="Nombre"
+							required
+						/>
+						<i class=""></i>
+					</div>
+
+					<div class="input_box">
+						<input
+							type="text"
+							placeholder="Ingresa tu Apellido"
+							name="Apellido"
+							required
+						/>
+						<i class=""></i>
+					</div>
+
+					<div class="input_box">
+						<input
+							type="text"
+							placeholder="Ingresa tu Email"
+							name="Email"
+							required
+						/>
+						<i class="uil uil-envelope-alt email"></i>
+					</div>
+
+					<div class="input_box">
+						<input
+							type="password"
+							placeholder="Ingresa tu contraseña"
+							name="Nueva_contraseña"
+							required
+						/>
+						<i class="uil uil-lock password"></i>
+						<i class="uil uil-eye-slash pw_hide"></i>
+					</div>
+
+					<div class="input_box">
+						<input
+							type="password"
+							placeholder="Confirmar contraseña"
+							name="confirm_password"
+							required
+						/>
+						<i class="uil uil-lock password"></i>
+						<i class="uil uil-eye-slash pw_hide"></i>
+					</div>
+
+					<button class="button">Registrarse</button>
+					<div class="login_signup">
+						¿Tienes una cuenta? <a href="#" id="login"
+							>Iniciar Sesión</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<div class="button-container">
+		<div class="centered-buttons">
+			<a href="botones/Monografias.html" class="button"
+				><i class="uil uil-file-alt"></i> MONOGRAFIAS</a
+			>
+			<a href="botones/Ensayo.html" class="button"
+				><i class="uil uil-pen"></i> ENSAYO</a
+			>
+			<a href="botones/Trabajo de investigacion.html" class="button"
+				><i class="uil uil-search"></i> TRABAJO DE INVESTIGACION</a
+			>
+			<a href="botones/Investigacion de Accion.html" class="button"
+				><i class="uil uil-graduation-cap"></i> INVESTIGACION DE ACCION</a
+			>
+			<a href="botones/Informe Academico.html" class="button"
+				><i class="uil uil-clipboard-notes"></i> INFORME ACADEMICO</a
+			>
+			<a href="botones/Informe Estadistico.html" class="button"
+				><i class="uil uil-chart"></i> INFORME ESTADISTICO</a
+			>
+		</div>
+	</div>
+	<footer>
+		<p>Derechos de autor &copy; 2024 GRUPO 05</p>
+	</footer>
+</Layout>
+
+<style>
+
+	
+	
+</style>

@@ -1,0 +1,20 @@
+{
+  "name": "biblioteca-digital",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.2.5",
+    "@notionhq/client": "^2.2.15",
+    "astro": "^4.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11"
+  }
+}
