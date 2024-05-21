@@ -1,56 +1,63 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { Client } from "@notionhq/client";
-const notion = new Client({ auth: import.meta.env.API_KEY_NOTION });
 
-async function getUser() {
-    const databaseId = "3b67486cb4d34ab09263b13ec9e781d6";
-
-    try {
-        const response: any = await notion.databases.query({
-            database_id: databaseId,
-        });
-
-        return response.results;
-    } catch (error) {
-        console.error(error.body);
-    }
-}
-
-const users = await getUser().then((respose) => {
-    let usersData = [];
-    respose.forEach((result) => {
-        if (result.object === "page" && result.properties) {
-            const username =
-                result.properties.username.rich_text[0]?.plain_text;
-            const password =
-                result.properties.password.rich_text[0]?.plain_text;
-
-            if (username && password) {
-                usersData.push({ username, password });
-            }
-        }
-    });
-
-    return usersData;
-});
+const URL_API = import.meta.env.URL_API;
 
 if (Astro.request.method === "POST") {
     try {
         const data = await Astro.request.formData();
-        const usernameLogin = data.get("usernameLogin");
-        const passwordLogin = data.get("passwordLogin");
+        const nombre = data.get("nombreRegister");
 
-        const userExists = users.some(
-            (user) =>
-                user.username === usernameLogin &&
-                user.password === passwordLogin,
-        );
+        // Aqui se registra
+        if (nombre) {
+            const apellido_paterno = data.get("apellidoPaternoRegister");
+            const apellido_materno = data.get("apellidoMaternoRegister");
+            const email = data.get("emailRegister");
+            const password = data.get("passwordRegister");
 
-        if (userExists) {
-            return Astro.redirect("/biblioteca");
+            await fetch(`${URL_API}/user/create`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nombre,
+                    apellido_paterno,
+                    apellido_materno,
+                    email,
+                    password,
+                }),
+            });
+
+            return Astro.redirect("/login");
         } else {
-            return Astro.redirect("/");
+            // Aqui hace login
+            const emailLogin = data.get("emailLogin");
+            const passwordLogin = data.get("passwordLogin");
+
+            const response = await fetch(`${URL_API}/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: emailLogin,
+                    password: passwordLogin,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => data)
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+
+            if (response) {
+                if (response.status === "success") {
+                    return Astro.redirect("/biblioteca");
+                } else {
+                    return Astro.redirect("/login");
+                }
+            }
         }
     } catch (error) {
         if (error instanceof Error) {
@@ -64,31 +71,49 @@ if (Astro.request.method === "POST") {
     <main class="page-login">
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="#">
+                <form method="post">
                     <h1>Crea tu Cuenta</h1>
 
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button id="lila">Registrar</button>
+                    <input
+                        type="text"
+                        placeholder="Nombre"
+                        name="nombreRegister"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Apellido Paterno"
+                        name="apellidoPaternoRegister"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Apellido Materno"
+                        name="apellidoMaternoRegister"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="emailRegister"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="passwordRegister"
+                    />
+                    <button type="submit">Registrar</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form method="post">
                     <h1>Iniciar Sesión</h1>
 
-                    <input
-                        type="text"
-                        placeholder="Email"
-                        name="usernameLogin"
-                    />
+                    <input type="text" placeholder="Email" name="emailLogin" />
                     <input
                         type="password"
                         placeholder="Password"
                         name="passwordLogin"
                     />
                     <a href="#">Olvidaste tu contraseña?</a>
-                    <button >Iniciar sesión</button>
+                    <button type="submit">Iniciar sesión</button>
                 </form>
             </div>
             <div class="overlay-container">
