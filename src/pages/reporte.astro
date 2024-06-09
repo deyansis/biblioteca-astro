@@ -1,0 +1,264 @@
+---
+import Layout1 from "../layouts/layout1.astro";
+import Chart from "chart.js/auto";
+---
+
+<Layout1 title="Reportes de Temas Más Buscados">
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Contenido de la página -->
+  <main class="container my-5">
+    <section id="intro" class="text-center mb-5">
+      <h2 class="display-4 text-primary mt-3">
+        Reportes de Temas Más Buscados
+      </h2>
+      <p class="lead text-dark">
+        Visualice los temas más buscados en la Biblioteca Digital Educativa
+        Vallejiana y los años en que se buscaron.
+      </p>
+    </section>
+
+    <section id="reportes" class="mb-5">
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h3 class="card-title text-primary">Temas Más Buscados</h3>
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Tema</th>
+                <th scope="col">Año</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ciencia de datos</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>el arte de la fotografia</td>
+                <td>2022</td>
+              </tr>
+              <tr>
+                <td>Politicos e intelectuales</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>Historia nacional</td>
+                <td>2021</td>
+              </tr>
+              <tr>
+                <td>Diseño de sistemas de información</td>
+                <td>2022</td>
+              </tr>
+              <!-- Agregar más filas según sea necesario -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="grafico" class="mb-5">
+      <div class="card bg-light text-dark">
+        <div class="card-body">
+          <h3 class="card-title text-primary">Gráfico de Temas Más Buscados</h3>
+          <div class="chart-container">
+            <canvas id="temasChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="descargar" class="text-center">
+      <h3 class="text-primary">Descargar Reporte en PDF</h3>
+      <a href="documentos/reporte.pdf" class="btn btn-primary"
+        >Descargar Guía en PDF</a
+      >
+    </section>
+  </main>
+
+  <footer class="bg-dark text-center text-white py-3">
+    <p>Derechos de autor &copy; 2024 Biblioteca Digital Educativa Vallejiana</p>
+  </footer>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+      var canvas = document.getElementById("temasChart");
+      var ctx = canvas.getContext("2d");
+      var temasChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Ciencia de datos",
+            "El arte de la fotografia",
+            "Politicos e intelectuales",
+            "Historia nacional",
+            "Diseño de sistemas de información",
+          ],
+          datasets: [
+            {
+              label: "Año 2020",
+              data: [12, 19, 3, 5, 2],
+              backgroundColor: "rgba(78, 115, 223, 0.5)",
+              borderColor: "rgba(78, 115, 223, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Año 2021",
+              data: [7, 11, 5, 8, 3],
+              backgroundColor: "rgba(28, 200, 138, 0.5)",
+              borderColor: "rgba(28, 200, 138, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Año 2022",
+              data: [13, 15, 8, 6, 4],
+              backgroundColor: "rgba(246, 194, 62, 0.5)",
+              borderColor: "rgba(246, 194, 62, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            title: {
+              display: true,
+              text: "Temas Más Buscados por Año",
+            },
+          },
+        },
+      });
+    });
+  </script>
+</Layout1>
+
+<style>
+  /* Estilos generales */
+  body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    background-image: url("imagenes/c2dedc.png");
+  }
+
+  main {
+    background: #abb7d8;
+    border-radius: 20px;
+    padding: 100px;
+    margin-top: 20px;
+    max-width: 1500px;
+  }
+
+  #intro h2 {
+    text-align: center;
+    font-size: 35px;
+    color: rgb(17, 106, 123);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgb(17, 106, 123); /* Sombra en el texto */
+  }
+
+  #intro p {
+    font-size: 1.25rem; /* Tamaño de fuente adecuado para el párrafo */
+    color: #000000; /* Un color oscuro pero no negro para el texto */
+    margin-top: 1rem; /* Margen superior */
+    line-height: 1.6; /* Espaciado de línea para mejorar la legibilidad */
+    font-weight: bold;
+  }
+
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+
+  /* Estilos específicos para el encabezado */
+  #intro h2 {
+    margin-top: 0; /* Reduce el margen superior */
+  }
+  #reportes. card-title {
+    color: #04070a; /* Color del título */
+    font-weight: bold;
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra del texto */
+  }
+  .table {
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Espaciado entre filas */
+  }
+  #reportes.table thead th {
+    background-color: #000000; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto del encabezado */
+    border: none;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+  #reportes .table tbody td {
+    background-color: #ffffff; /* Color de fondo de las celdas */
+    color: #030303; /* Color del texto */
+    border: none;
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de las celdas */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  #reportes .table tbody tr:hover td {
+    background-color: #a5b4fc; /* Color de fondo al pasar el cursor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el cursor */
+  }
+  /* Estilos para la sección de descarga */
+  #descargar {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  #descargar h3 {
+    text-align: center;
+    font-size: 30px;
+    color: rgb(83, 92, 145); /* Color del título */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgb(2, 5, 5);
+    margin-top: 1rem; /* Margen superior */
+  }
+
+  #descargar a.btn-primary {
+    background-color: rgb(87, 115, 240);
+    border-color: 3px #1679ab;
+    color: #ffffff; /* Color del texto */
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  #descargar a.btn-primary:hover {
+    background-color: #074173; /* Color de fondo del botón al pasar el cursor */
+    color: #ffffff; /* Color del texto al pasar el cursor */
+  }
+</style>

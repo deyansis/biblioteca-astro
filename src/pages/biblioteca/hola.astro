@@ -1,0 +1,226 @@
+---
+import Layout1 from "../../layouts/layout1.astro";
+import { storeUser } from "../../store/user.store";
+
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+
+<Layout1 title="Ciencia de Datos">
+    <div class="container">
+        <h1>Bienvenido a la Biblioteca de Ciencia de Datos</h1>
+        <p>
+            Explora nuestros documentos y descubre el fascinante mundo de la
+            ciencia de datos.
+        </p>
+        <main>
+            <section class="books-container">
+                <article class="book-container">
+                    <h2>
+                        Asertividad sexual y violencia de pareja en
+                        universitarios del distrito de Los Olivos, 2023
+                    </h2>
+                    <div class="book-details">
+                        <img
+                            src="/imagenes/libro1.png"
+                            alt="Portada del Libro 1"
+                            class="book-cover"
+                        />
+                        <div class="book-info">
+                            <p>
+                                <strong>Autor:</strong> Pachas Flores, Marcia Milagros
+                            </p>
+                            <p><strong>Año:</strong> 2024</p>
+                            <p><strong>Resumen:</strong></p>
+                            <p class="summary">
+                                La presente investigación tiene como objetivo
+                                determinar la relación entre la asertividad
+                                sexual y violencia de pareja en universitarios
+                                del distrito de Los Olivos, 2023. Por lo cual,
+                                el estudio es de tipo básico, con diseño no
+                                experimental, asimismo, de corte transversal y
+                                el nivel es correlacional. La muestra se
+                                encuentra compuesta por 476 jóvenes de
+                                universidades ubicadas en el distrito de Los
+                                Olivos, a los cuales se les aplicó la Escala de
+                                Asertividad Sexual (SAS) adaptado por Sierra et
+                                al. (2011) y el Cuestionario de Violencia entre
+                                Novios Revisado (DVQ-R) adaptado por Rodríguez
+                                et al. (2017). Por consiguiente, los resultados
+                                nos muestran un coeficiente de -.199, una
+                                significancia de .00 y un tamaño de efecto
+                                pequeño, concluyendo de esa manera, la
+                                existencia de relación inversa y significativa
+                                entre la variable asertividad sexual y violencia
+                                de pareja.
+                            </p>
+                            <a
+                                href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/140880/Pachas_FMM-SD.pdf?sequence=1&isAllowed=y"
+                                class="download-btn"
+                                download>Descargar PDF</a
+                            >
+                        </div>
+                    </div>
+                </article>
+                <article class="book-container">
+                    <h2>
+                        Violencia intrafamiliar y depresión en mujeres usuarias
+                        de un centro de salud del distrito de Ancón, 2023
+                    </h2>
+                    <div class="book-details">
+                        <img
+                            src="/imagenes/libro2.png"
+                            alt="Portada del Libro 2"
+                            class="book-cover"
+                        />
+                        <div class="book-info">
+                            <p>
+                                <strong>Autores:</strong> Aponte Jaimes, Yoza Kurina
+                                <br /> Carrasco Solis, Ruben Oswaldo
+                            </p>
+                            <p><strong>Año:</strong> 2023</p>
+                            <p><strong>Resumen:</strong></p>
+                            <p class="summary">
+                                Esta investigación tuvo como objetivo determinar
+                                la relación entre la violencia intrafamiliar y
+                                la depresión en mujeres usuarias de un centro de
+                                salud del distrito de Ancón. El estudio fue de
+                                diseño no experimental, de corte transversal, y
+                                contó con la participación de 380 mujeres entre
+                                18 y 35 años. Se utilizaron dos instrumentos de
+                                medición: la Escala de Violencia Intrafamiliar
+                                (VIF J4) y el cuestionario sobre la salud del
+                                paciente-9 (PQH-9). Se observó una correlación
+                                directa alta y significativa entre ambas
+                                variables (Rho = 0.781; p - 0.001). Además, se
+                                observaron diferencias estadísticamente
+                                significativas en función a la edad, con niveles
+                                más altos de violencia en el grupo de 30-35 años
+                                y de depresión en el grupo de 25-29 años.
+                            </p>
+                            <a
+                                href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/140690/Aponte_JYK-Carrasco_SRO-SD.pdf?sequence=1&isAllowed=y"
+                                class="download-btn"
+                                download>Descargar PDF</a
+                            >
+                        </div>
+                    </div>
+                </article>
+                <!-- Agrega más artículos de libros aquí -->
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 GRUPO 05 Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <style>
+        /* Estilos generales del cuerpo del documento */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("/imagenes/c2dedc.png"); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+            background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+        }
+
+        .header-container h1 {
+            margin: 0; /* Elimina el margen superior e inferior del encabezado */
+        }
+
+        nav ul {
+            list-style: none; /* Elimina los estilos de lista predeterminados */
+            padding: 0; /* Elimina el relleno predeterminado */
+            margin: 0; /* Elimina el margen predeterminado */
+            display: flex; /* Utiliza el modelo de caja flexible */
+            justify-content: center; /* Los elementos hijos se centran horizontalmente */
+        }
+
+        nav ul li {
+            margin: 0 1em; /* Añade márgenes a los elementos de la lista */
+        }
+
+        nav ul li a {
+            color: #ece1e1; /* Establece el color del texto */
+            text-decoration: none; /* Elimina la decoración del enlace */
+        }
+
+        /* Estilos del contenido principal */
+        main {
+            flex: 1; /* El contenido principal ocupa todo el espacio disponible */
+            padding: 2em 0; /* Añade relleno superior e inferior */
+        }
+
+        /* Estilos del contenedor de libros */
+        .books-container {
+            max-width: 1000px; /* Establece el ancho máximo */
+            width: 100%; /* Ocupa todo el ancho disponible */
+            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            padding: 1em; /* Añade relleno */
+        }
+
+        /* Estilos de cada contenedor de libro individual */
+        .book-container {
+            background-color: #ffffff; /* Establece el color de fondo */
+            margin-bottom: 2em; /* Añade margen inferior */
+            padding: 1em; /* Añade relleno */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra */
+        }
+
+        .book-container h2 {
+            margin-top: 0; /* Elimina el margen superior del título del libro */
+        }
+
+        /* Estilos del detalle del libro */
+        .book-details {
+            display: flex; /* Utiliza el modelo de caja flexible */
+            flex-wrap: wrap; /* Permite que los detalles se envuelvan en múltiples líneas */
+        }
+
+        .book-cover {
+            max-width: 200px; /* Establece el ancho máximo */
+            max-height: 300px; /* Establece la altura máxima */
+            width: 100%; /* Ajusta el ancho al 100% del contenedor */
+            height: auto; /* Permite que la altura se ajuste automáticamente */
+            margin-right: 1em; /* Añade margen derecho */
+            object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+        }
+
+        .book-info {
+            flex: 1; /* Toma todo el espacio disponible */
+        }
+
+        /* Estilos del botón de descarga */
+        .download-btn {
+            display: inline-block; /* Muestra el botón como un bloque en línea */
+            padding: 0.5em 1em; /* Añade relleno */
+            margin-top: 1em; /* Añade margen superior */
+            background-color: #84a0eb; /* Establece el color de fondo */
+            color: #fff; /* Establece el color del texto */
+            text-decoration: none; /* Elimina la decoración del enlace */
+            border-radius: 5px; /* Añade esquinas redondeadas */
+        }
+
+        .download-btn:hover {
+            background-color: #5a7abe; /* Cambia el color de fondo al pasar el cursor */
+        }
+
+        /* Estilos del pie de página */
+        footer {
+            background-color: #333; /* Establece el color de fondo */
+            color: #fff; /* Establece el color del texto */
+            text-align: center; /* Centra el contenido horizontalmente */
+            padding: 1em 0; /* Añade relleno superior e inferior */
+            margin-top: auto; /* Mantiene el pie de página abajo si el contenido es corto */
+        }
+
+        /* Estilos para justificar el texto del resumen */
+        .book-info .summary {
+            text-align: justify; /* Justifica el texto */
+        }
+    </style>
+</Layout1>

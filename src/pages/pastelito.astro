@@ -1,0 +1,210 @@
+---
+import Layout1 from "../layouts/layout1.astro";
+---
+
+<Layout1 title="Foro de Comentarios">
+    <div class="container">
+        <h1>Foro de Comentarios</h1>
+        <p>Deja tus comentarios sobre los documentos y la plataforma.</p>
+
+        <div class="comment-form">
+            <h2>Dejar un comentario</h2>
+            <form id="commentForm">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="document">Documento:</label>
+                    <input
+                        type="text"
+                        id="document"
+                        name="document"
+                        list="document-list"
+                        required
+                    />
+                    <datalist id="document-list">
+                        <!-- Las opciones de documentos se añadirán aquí dinámicamente -->
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comentario:</label>
+                    <textarea id="comment" name="comment" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <div class="comments-list">
+            <h2>Comentarios</h2>
+            <ul id="comments">
+                <!-- Los comentarios se añadirán aquí -->
+            </ul>
+        </div>
+    </div>
+</Layout1>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM completamente cargado");
+    
+    const commentForm = document.getElementById("commentForm");
+    const commentsList = document.getElementById("comments");
+
+    const documents = [
+        "Explora nuestros documentos y descubre el fascinante mundo del Diseño de sistemas de información",
+        "Impacto del diseño de afiches publicitarios en la percepción visual del público en la empresa Comercial Vicky-Callao 2023",
+        "Calidad del registro de historia clínica en consultorios externos, del Establecimiento de Salud La Unión, Piura, 2020",
+        "Violencia intrafamiliar y depresión en mujeres usuarias de un centro de salud del distrito de Ancón, 2023",
+        "Economía circular y desarrollo sustentable en el sector agricultura en la provincia de Barranca, 2022",
+        "Economía circular y desarrollo sustentable en el sector agricultura en la provincia de Barranca, 2022",
+        "Rediseño de un sitio web de la Agencia Formia en supercepción de los usuarios de Lima – 2022"
+    ]; // Ejemplo de documentos predefinidos
+
+    const dataList = document.getElementById("document-list");
+    documents.forEach((doc) => {
+        const option = document.createElement("option");
+        option.value = doc;
+        dataList.appendChild(option);
+    });
+
+    commentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        console.log("Formulario enviado");
+
+        const name = document.getElementById("name").value;
+        const document = document.getElementById("document").value;
+        const comment = document.getElementById("comment").value;
+
+        console.log(`Nombre: ${name}, Documento: ${document}, Comentario: ${comment}`);
+
+        const commentItem = document.createElement("li");
+        commentItem.innerHTML = `<strong>${name}</strong> sobre <em>${document}</em>: <p>${comment}</p>`;
+
+        commentsList.appendChild(commentItem);
+        console.log("Comentario añadido a la lista");
+
+        // Limpiar el formulario
+        commentForm.reset();
+    });
+});
+
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("imagenes/c2dedc.png");
+        background-position: center;
+        background-size: cover;
+        color: #030303;
+        line-height: 1.6;
+    }
+    .container {
+        max-width: 800px;
+        margin: 10px auto;
+        padding: 100px; /* Reducido para mejor estética */
+        background-color: rgb(171, 183, 216);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        max-width: 1500px;
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+        font-size: 35px;
+        color: #116A7B;
+        font-weight: bold; 
+        text-transform: uppercase;
+        text-shadow: 2px 4px 8px #1572A1; /* Sombra en el texto */
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 50px;
+        color: black;
+        font-weight: bold; 
+    }
+
+    .comment-form {
+        margin-bottom: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: 1.4em;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .form-group textarea {
+        height: 100px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #075985;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #172554;
+    }
+
+    .comments-list ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .comments-list li {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .comments-list strong {
+        display: block;
+        font-size: 10em;
+        color: #333;
+    }
+
+    .comments-list em {
+        color: #666;
+    }
+
+    .comments-list p {
+        margin: 5px 0 0;
+        color: #555;
+    }
+</style>

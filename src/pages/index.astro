@@ -1,155 +1,657 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-
 ---
 
 <Layout title="Inicio">
-	
+    <link
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
 
-	<section class="home">
-		<div class="form_container">
-			<i class="uil uil-times form_close"></i>
-			<!-- Login -->
+    <section class="home">
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>
+            <!-- Login -->
+            <form class="form login_form">
+                <h2>Inicio de Sesión</h2>
+                <div class="input_box">
+                    <input
+                        type="text"
+                        placeholder="Ingresa tu Email"
+                        name="Email"
+                        required
+                    />
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
 
-			<div class="form login_form">
-				<form action="#">
-					<h2>Inicio de Sesión</h2>
-					<div class="input_box">
-						<input
-							type="text"
-							placeholder="Ingresa tu Email"
-							name="Email"
-							required
-						/>
-						<i class="uil uil-envelope-alt email"></i>
-					</div>
+                <div class="input_box">
+                    <input
+                        type="password"
+                        placeholder="Ingresa tu contraseña"
+                        name="Contraseña"
+                        required
+                    />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
+                <div class="option_field">
+                    <span class="checkbox">
+                        <input type="checkbox" id="check" />
+                        <label for="check">Recordarme</label>
+                    </span>
 
-					<div class="input_box">
-						<input
-							type="password"
-							placeholder="Ingresa tu contraseña"
-							name="Contraseña"
-							required
-						/>
-						<i class="uil uil-lock password"></i>
-						<i class="uil uil-eye-slash pw_hide"></i>
-					</div>
-					<div class="option_field">
-						<span class="checkbox">
-							<input type="checkbox" id="check" />
-							<label for="check">Recordarme</label>
-						</span>
+                    <a href="#" class="forgot_pw">¿Olvidaste tu contraseña?</a>
+                </div>
 
-						<a href="#" class="forgot_pw"
-							>¿Olvidaste tu contraseña?</a
-						>
-					</div>
+                <button class="button">Iniciar Sesión</button>
+                <div class="login_signup">
+                    ¿No tienes una cuenta? <a href="#" id="signup"
+                        >Registrarse</a
+                    >
+                </div>
+            </form>
 
-					<button class="button">Iniciar Sesión</button>
-					<div class="login_signup">
-						¿No tienes una cuenta? <a href="#" id="signup"
-							>Registrarse</a>
-					</div>
-				</form>
-			</div>
+            <!-- Registro-->
+            <form class="form signup_form">
+                <h2>Registro</h2>
+                <div class="input_box">
+                    <input
+                        type="text"
+                        placeholder="Ingresa tu Nombre"
+                        name="Nombre"
+                        required
+                    />
+                </div>
 
-			<!-- Registro-->
-			<div class="form signup_form">
-				<form action="#">
-					<h2>Registro</h2>
-					<div class="input_box">
-						<input
-							type="text"
-							placeholder="Ingresa tu Nombre"
-							name="Nombre"
-							required
-						/>
-						<i class=""></i>
-					</div>
+                <div class="input_box">
+                    <input
+                        type="text"
+                        placeholder="Ingresa tu Apellido"
+                        name="Apellido"
+                        required
+                    />
+                </div>
 
-					<div class="input_box">
-						<input
-							type="text"
-							placeholder="Ingresa tu Apellido"
-							name="Apellido"
-							required
-						/>
-						<i class=""></i>
-					</div>
+                <div class="input_box">
+                    <input
+                        type="text"
+                        placeholder="Ingresa tu Email"
+                        name="Email"
+                        required
+                    />
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
 
-					<div class="input_box">
-						<input
-							type="text"
-							placeholder="Ingresa tu Email"
-							name="Email"
-							required
-						/>
-						<i class="uil uil-envelope-alt email"></i>
-					</div>
+                <div class="input_box">
+                    <input
+                        type="password"
+                        placeholder="Ingresa tu contraseña"
+                        name="Nueva_contraseña"
+                        required
+                    />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
 
-					<div class="input_box">
-						<input
-							type="password"
-							placeholder="Ingresa tu contraseña"
-							name="Nueva_contraseña"
-							required
-						/>
-						<i class="uil uil-lock password"></i>
-						<i class="uil uil-eye-slash pw_hide"></i>
-					</div>
+                <div class="input_box">
+                    <input
+                        type="password"
+                        placeholder="Confirmar contraseña"
+                        name="confirm_password"
+                        required
+                    />
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil uil-eye-slash pw_hide"></i>
+                </div>
 
-					<div class="input_box">
-						<input
-							type="password"
-							placeholder="Confirmar contraseña"
-							name="confirm_password"
-							required
-						/>
-						<i class="uil uil-lock password"></i>
-						<i class="uil uil-eye-slash pw_hide"></i>
-					</div>
+                <button class="button">Registrarse</button>
+                <div class="login_signup">
+                    ¿Tienes una cuenta? <a href="#" id="login">Iniciar Sesión</a
+                    >
+                </div>
+            </form>
+        </div>
+    </section>
 
-					<button class="button">Registrarse</button>
-					<div class="login_signup">
-						¿Tienes una cuenta? <a href="#" id="login"
-							>Iniciar Sesión</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</section>
+    <div class="bg-container">
+        <div
+            class="bg-image"
+            style="background-image: url('imagenes/fondocont2.jpg');">
+        </div>
+        <div
+            class="bg-image"
+            style="background-image: url('imagenes/fondocon.jpg');"
+        >
+        </div>
+        <div
+            class="bg-image"
+            style="background-image: url('imagenes/banner01.jpg');"
+        >
+        </div>
+        <div
+            class="bg-image"
+            style="background-image: url('imagenes/fondocon.jpg');"
+        >
+        </div>
+        <div
+            class="bg-image"
+            style="background-image: url('imagenes/banner03.jpg');"
+        >
+        </div>
+    </div>
+    <!-- botones flotantes-->
+    <div class="button-container">
+        <div class="centered-buttons">
+            <a href="/informeAcademico/monografia" class="button"
+                ><i class="uil uil-file-alt"></i> MONOGRAFIAS</a
+            >
+            <a href="/informeAcademico/ensayo" class="button"
+                ><i class="uil uil-pen"></i> ENSAYO</a
+            >
+            <a href="/informeAcademico/investigacion" class="button"
+                ><i class="uil uil-search"></i> TRABAJO DE INVESTIGACION</a
+            >
+            <a href="/informeAcademico/accion" class="button"
+                ><i class="uil uil-graduation-cap"></i> INVESTIGACION DE ACCION</a
+            >
+            <a href="/informeAcademico/academico" class="button"
+                ><i class="uil uil-clipboard-notes"></i> INFORME ACADEMICO</a
+            >
+            <a href="/informeAcademico" class="button"
+                ><i class="uil uil-chart"></i> INFORME ESTADISTICO</a
+            >
+        </div>
+    </div>
+    <!-- tarjetas de contenido-->
+    <section class="content-cards">
+        <h2>Temas más buscados</h2>
+        <section class="content-cards">
+            <div class="container">
+                <div
+                    class="row row-cols-1 row-cols-md-3 g-4 justify-content-center"
+                >
+                    <article class="col-md-3 card">
+                        <img src="imagenes/datos.jpeg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">Ciencia de datos</h5>
+                            <p class="card-text">
+                                Descripción breve la ciencia de datos y la
+                                importancia que tiene.
+                            </p>
+                            <a href="biblioteca/hola" class="btn btn-primary"
+                                >Ver más</a
+                            >
+                        </div>
+                    </article>
+                    <article class="col-md-3 card">
+                        <img src="imagenes/arte.jpg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">el arte de la fotografia</h5>
+                            <p class="card-text">
+                                Descripción breve del tema de diseño.
+                            </p>
+                            <a
+                                href="biblioteca/fotografia"
+                                class="btn btn-primary">Ver más</a
+                            >
+                        </div>
+                    </article>
+                    <article class="col-md-3 card">
+                        <img
+                            src="imagenes/polotica.jpeg"
+                            class="card-img-top"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Politicos e intelectuales
+                            </h5>
+                            <p class="card-text">
+                                Descripción breve acerca de algunos datos
+                                importantes sobre la politica.
+                            </p>
+                            <a
+                                href="biblioteca/politica"
+                                class="btn btn-primary">Ver más</a
+                            >
+                        </div>
+                    </article>
+                    <article class="col-md-3 card">
+                        <img
+                            src="imagenes/historia.jpeg"
+                            class="card-img-top"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">historia nacional</h5>
+                            <p class="card-text">
+                                Descripción breve sobre la historia nacional de
+                                nuestro pais.
+                            </p>
+                            <a
+                                href="biblioteca/historia"
+                                class="btn btn-primary">Ver más</a
+                            >
+                        </div>
+                    </article>
+                    <article class="col-md-3 card">
+                        <img
+                            src="imagenes/sistema de diseño.png"
+                            class="card-img-top"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Diseño de sistemas de información
+                            </h5>
+                            <p class="card-text">
+                                Descripción breve de las actualizaciones sobre
+                                los sistemas de informacion.
+                            </p>
+                            <a
+                                href="biblioteca/diseñoSistemas"
+                                class="btn btn-primary">Ver más</a
+                            >
+                        </div>
+                    </article>
+                    <article class="col-md-3 card">
+                        <img src="imagenes/web.png" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Diseño, construcción y mantenimiento de sitios
+                                web
+                            </h5>
+                            <p class="card-text">
+                                Descripción breve de los diseños acerca de las
+                                paginas web.
+                            </p>
+                            <a
+                                href="biblioteca/sitiosWeb"
+                                class="btn btn-primary">Ver más</a
+                            >
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>Derechos de autor &copy; 2024 GRUPO 05</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        ></script>
+    </section>
 
-	<div class="button-container">
-		<div class="centered-buttons">
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".bg-image");
 
-			<a href="botones/Monografias.html" class="button"
-				><i class="uil uil-file-alt"></i> MONOGRAFIAS</a
-			>
-			<a href="botones/Ensayo.html" class="button"
-				><i class="uil uil-pen"></i> ENSAYO</a
-			>
-			<a href="botones/Trabajo de investigacion.html" class="button"
-				><i class="uil uil-search"></i> TRABAJO DE INVESTIGACION</a
-			>
-			<a href="botones/Investigacion de Accion.html" class="button"
-				><i class="uil uil-graduation-cap"></i> INVESTIGACION DE ACCION</a
-			>
-			<a href="botones/Informe Academico.html" class="button"
-				><i class="uil uil-clipboard-notes"></i> INFORME ACADEMICO</a
-			>
-			<a href="botones/Informe Estadistico.html" class="button"
-				><i class="uil uil-chart"></i> INFORME ESTADISTICO</a
-			>
-		</div>
-	</div>
-	<footer>
-		<p>Derechos de autor &copy; 2024 GRUPO 05</p>
-	</footer>
+        function changeImage() {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add("active");
+        }
+
+        setInterval(changeImage, 3000);
+    </script>
+
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        /* fondo */
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("imagenes/e2e8f0.png");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container {
+            /* Limita el ancho del contenido */
+            margin: 0 auto; /* Centra el contenido en la página */
+            padding: 20px; /* Espacio alrededor del contenido */
+            display: flex; /* Muestra las tarjetas en línea */
+            justify-content: space-between; /* Distribuye el espacio entre las tarjetas */
+            margin-top: 20px; /* para el espacio entre las tarjetas y los botones */
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(
+                13,
+                13,
+                14,
+                0.9
+            ); /* Fondo semi-transparente */
+            padding: 10px 20px; /* Espacio interno */
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .nav_logo {
+            color: #fff;
+            font-size: 25px;
+        }
+
+        .nav_link {
+            color: #fff;
+            margin-left: 20px;
+        }
+        .button {
+            color: #fff;
+        }
+
+        .nav_logo {
+            font-size: 25px;
+        }
+        .nav_item {
+            column-gap: 35px;
+        }
+        .nav_link:hover {
+            color: #b62b2b;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .home {
+            /* para la imagen de arriba que quisiste borrar pero no se borro */
+            position: relative;
+            height: 70vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-image: url("imagenes/puntos1.jpg");
+        }
+        .form_container {
+            position: fixed;
+            max-width: 320px;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease-out;
+        }
+
+        .form_close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #0b0217;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        .form_container h2 {
+            font-size: 22px;
+            color: #0b0217;
+            text-align: center;
+        }
+        .input_box {
+            position: relative;
+            margin-top: 30px;
+            width: 100%;
+            height: 40px;
+        }
+
+        .input_box input {
+            height: 100%;
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 0 30px;
+            color: #333;
+            transition: all 0.2s ease;
+            border-bottom: 1.5px solid #aaa;
+        }
+
+        .input_box input:focus {
+            border-color: #f67f2b;
+        }
+        .input_box i {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%);
+            font-size: 20px;
+            color: #707070;
+        }
+
+        .input_box i.email,
+        .input_box i.password {
+            left: 0;
+        }
+
+        .input_box input:focus ~ i.email,
+        .input_box input:focus ~ i.password {
+            color: #f67f2b;
+        }
+
+        .input_box i.pw_hide {
+            right: 0;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .option_field {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .form_container a {
+            color: #f67f2b;
+            font-size: 12px;
+        }
+
+        .form_container a:hover {
+            text-decoration: underline;
+        }
+
+        .checkbox {
+            display: flex;
+            column-gap: 6px;
+            white-space: nowrap;
+        }
+
+        .checkbox input {
+            accent-color: #f67f2b;
+        }
+
+        .checkbox label {
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+            color: #0b0217;
+        }
+
+        .login_signup {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .centered-buttons {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .button-container {
+            position: absolute;
+            top: 450px; /* Ajusta este valor según sea necesario para subir los botones */
+            left: 50%;
+        }
+
+        .centered-buttons {
+            display: flex;
+            flex-direction: row; /* Cambia la dirección de flexión a horizontal */
+            align-items: center;
+            justify-content: center; /* Centra los botones horizontalmente */
+        }
+
+        .button {
+            margin: 0 5px;
+            padding: 10px 16px;
+            background-color: #d37676;
+            border: 2px solid #b06161;
+            width: 170px;
+            height: 125px; /* Ajusta la altura según sea necesario */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #070707;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        header {
+            background-color: #0d0d0e;
+            color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        /* Estilo personalizado para los iconos de los botones */
+        .button i {
+            font-size: 25px; /* Tamaño del icono */
+            margin-right: 5px; /* Espacio a la derecha del icono */
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .content-cards h2 {
+            font-size: 60px;
+            /* Reducir el margen inferior del título */
+            text-align: center;
+            color: #10141f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Agrega una sombra al texto */
+            /* Agrega un degradado de color al texto */
+            background: linear-gradient(to right, #84a0eb, #84a0eb);
+            -webkit-background-clip: text; /* Aplica el degradado al texto */
+            -webkit-text-fill-color: transparent; /* Hace que el texto sea transparente */
+            /* Otros estilos... */
+        }
+
+        .card {
+            background-color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+            transition:
+                box-shadow 0.1s ease-in-out,
+                transform 0.2s ease-in-out;
+            max-width: 550px; /* Aumenta el ancho máximo de las tarjetas */
+            height: 450px; /* Ajusta la altura de las tarjetas */
+            border-radius: 15px; /* Bordes redondeados */
+            margin-right: 30px;
+            margin-left: 10px;
+        }
+
+        .card:last-child {
+            margin-right: 0;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px; /* Ajusta la altura de las imágenes */
+            object-fit: cover;
+            border-top-left-radius: 15px; /* Bordes redondeados para la esquina superior izquierda */
+            border-top-right-radius: 15px; /* Bordes redondeados para la esquina superior derecha */
+        }
+
+        .card-title {
+            font-size: 20px; /* Reduce el tamaño del título */
+            margin-bottom: 8px; /* Ajusta el espacio entre el título y el texto */
+        }
+
+        .card-text {
+            font-size: 16px;
+            margin-bottom: 20px; /* Ajusta el espacio entre el texto y el botón */
+        }
+
+        .card-body {
+            padding: 20px; /* Ajusta el relleno alrededor del contenido de la tarjeta */
+        }
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Estilos del contenido */
+        .content {
+            display: flex; /* Muestra las tarjetas en línea */
+            justify-content: space-between; /* Distribuye el espacio entre las tarjetas */
+        }
+        /* Fondo del contenedor */
+        .bg-container {
+            position: absolute; /* Cambiado de fixed a absolute */
+            top: 40%;
+            left: 50%;
+            width: 1300px; /* Ancho del contenedor */
+            height: 350px; /* Altura del contenedor */
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 0; /* Ajustado a 0 para asegurarse de que no interfiera con otros elementos */
+            border-radius: 15px; /* Bordes redondeados */
+            border-color: #0d0d0e;
+        }
+
+        /* Imagen de fondo */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            border-radius: 15px; /* Bordes redondeados para las imágenes dentro del contenedor */
+        }
+
+        /* Imagen activa */
+        .bg-image.active {
+            opacity: 2;
+        }
+    </style>
 </Layout>
-
-<style>
-
-	
-	
-</style>

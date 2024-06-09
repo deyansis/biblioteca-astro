@@ -11,8 +11,20 @@
   },
   "dependencies": {
     "@astrojs/node": "^8.2.5",
+    "@astrojs/preact": "^3.3.0",
+    "@astrojs/react": "^3.4.0",
     "@notionhq/client": "^2.2.15",
-    "astro": "^4.8.2"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.8.2",
+    "body-parser": "^1.20.2",
+    "chart.js": "^4.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "preact": "^10.22.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.11"

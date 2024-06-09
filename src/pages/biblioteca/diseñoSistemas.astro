@@ -1,0 +1,244 @@
+---
+import Layout1 from "../../layouts/layout1.astro";
+import { storeUser } from "../../store/user.store";
+
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+
+<Layout1 title="Diseño de sistemas de información">
+    <div class="container">
+        <h1>Bienvenido a la Biblioteca de Diseño de sistemas de información</h1>
+        <p>
+            Explora nuestros documentos y descubre el fascinante mundo del
+            Diseño de sistemas de información
+        </p>
+        <main>
+            <section class="books-container">
+                <article class="book-container">
+                    <h2>
+                        Sistema web para el control de mantenimientos de
+                        maquinarias pesadas en la empresa de Comunicación,
+                        Seguridad y Diseño en Electrónica S.A.C
+                    </h2>
+                    <div class="book-details">
+                        <img
+                            src="/imagenes/h3.jpg"
+                            alt="Portada del Libro 1"
+                            class="book-cover"
+                        />
+                        <div class="book-info">
+                            <p>
+                                <strong>Autor:</strong> Dominguez Rosales, Raúl Joel
+                            </p>
+                            <p><strong>Año:</strong> 2016</p>
+                            <p><strong>Resumen:</strong></p>
+                            <p class="summary">
+                                El presente proyecto se realizó con la finalidad
+                                de poder ayudar en el proceso de control de
+                                mantenimientos el cual consiste en registrar los
+                                diversos mantenimientos, tópicos entre otras
+                                actividades que se realizan a las diversas
+                                maquinarias, para que así la empresa pueda
+                                brindar un óptimo servicio. El Sistema
+                                informático se enfocara en el proceso de control
+                                de mantenimientos de maquinarias pesadas, en
+                                donde tendrá como objetivo principal ayudar al
+                                supervisor, que es el encargado de controlar la
+                                ejecución de los diversos mantenimientos a las
+                                unidades, la información que requiera para poder
+                                tener un mejor control de estos, para la cual se
+                                usara diferentes herramientas como IBM Rational
+                                Rose para el despliegue, diseño, construcción,
+                                pruebas y la administración del sistema,
+                                Microsoft Project 2010 para la gestión del
+                                proyecto. Así mismo el dicho sistema mejorara el
+                                índice de disponibilidad de operación de las
+                                máquinas y el nivel de rentabilidad de
+                                mantenimiento de maquinarias, para así mejorar
+                                la satisfacción tanto al operador de dichas
+                                unidades como al supervisor el cual es el que
+                                verifica toda la información; El proyecto se
+                                encargara de mejorar el control de
+                                mantenimientos de maquinarias pesadas en la
+                                empresa Comunicación, Seguridad y Diseño en
+                                Electrónica, la cual se desarrollara bajo una
+                                plataforma web.
+                            </p>
+                            <a
+                                href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/18452/Dominguez_RRJ.pdf?sequence=1&isAllowed=y"
+                                class="download-btn"
+                                download>Descargar PDF</a
+                            >
+                        </div>
+                    </div>
+                </article>
+                <article class="book-container">
+                    <h2>
+                        Influencia de un sistema de información móvil para el
+                        proceso logístico del área de almacén de la empresa Data
+                        Business Perú
+                    </h2>
+                    <div class="book-details">
+                        <img
+                            src="/imagenes/h2.jpg"
+                            alt="Portada del Libro 2"
+                            class="book-cover"
+                        />
+                        <div class="book-info">
+                            <p>
+                                <strong>Autores:</strong> Velásquez Córdova, Steven
+                                Jefferson
+                            </p>
+                            <p><strong>Año:</strong> 2016</p>
+                            <p><strong>Resumen:</strong></p>
+                            <p class="summary">
+                                La presente investigación se realizó en la
+                                Empresa Data Business Perú, desde Agosto 2016
+                                hasta diciembre del 2016, donde la principal
+                                área involucrada fue almacén. Se tomaron 2
+                                indicadores, el porcentaje de pedidos entregados
+                                completos y el costo por unidad almacenada, con
+                                el fin de determinar la influencia de la
+                                implementación del sistema de información móvil
+                                para el proceso logístico del área de almacén de
+                                la empresa Data Business Perú. Para el
+                                desarrollo de la aplicación de utilizó la
+                                metodología SCRM donde la población fue de 20
+                                registros para cada indicador antes mencionado.
+                                Los resultados de las respectivas mediciones
+                                indican que se mejoró en un 88% el porcentaje de
+                                pedidos entregados completos y en un 13% el
+                                costo por unidad almacenada. Basándonos en los
+                                resultados llegamos a la conclusión que el
+                                sistema de información móvil influye en el
+                                proceso logístico del área de almacén en la
+                                empresa Data Business Perú
+                            </p>
+                            <a
+                                href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/3037/Vel%c3%a1squez_CSJ-SD.pdf?sequence=1&isAllowed=y"
+                                class="download-btn"
+                                download>Descargar PDF</a
+                            >
+                        </div>
+                    </div>
+                </article>
+                <!-- Agrega más artículos de libros aquí -->
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 GRUPO 05 Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <style>
+        /* Estilos generales del cuerpo del documento */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("/imagenes/c2dedc.png"); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+            background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+        }
+
+        .header-container h1 {
+            margin: 0; /* Elimina el margen superior e inferior del encabezado */
+        }
+
+        nav ul {
+            list-style: none; /* Elimina los estilos de lista predeterminados */
+            padding: 0; /* Elimina el relleno predeterminado */
+            margin: 0; /* Elimina el margen predeterminado */
+            display: flex; /* Utiliza el modelo de caja flexible */
+            justify-content: center; /* Los elementos hijos se centran horizontalmente */
+        }
+
+        nav ul li {
+            margin: 0 1em; /* Añade márgenes a los elementos de la lista */
+        }
+
+        nav ul li a {
+            color: #f7d9d9; /* Establece el color del texto */
+            text-decoration: none; /* Elimina la decoración del enlace */
+        }
+
+        /* Estilos del contenido principal */
+        main {
+            flex: 1; /* El contenido principal ocupa todo el espacio disponible */
+            padding: 2em 0; /* Añade relleno superior e inferior */
+        }
+
+        /* Estilos del contenedor de libros */
+        .books-container {
+            max-width: 1000px; /* Establece el ancho máximo */
+            width: 100%; /* Ocupa todo el ancho disponible */
+            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            padding: 1em; /* Añade relleno */
+        }
+
+        /* Estilos de cada contenedor de libro individual */
+        .book-container {
+            background-color: #fcfcfc; /* Establece el color de fondo */
+            margin-bottom: 2em; /* Añade margen inferior */
+            padding: 1em; /* Añade relleno */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra */
+            border-radius: 10px;
+        }
+
+        .book-container h2 {
+            margin-top: 0; /* Elimina el margen superior del título del libro */
+        }
+
+        /* Estilos del detalle del libro */
+        .book-details {
+            display: flex; /* Utiliza el modelo de caja flexible */
+            flex-wrap: wrap; /* Permite que los detalles se envuelvan en múltiples líneas */
+        }
+
+        .book-cover {
+            max-width: 200px; /* Establece el ancho máximo */
+            max-height: 300px; /* Establece la altura máxima */
+            width: 100%; /* Ajusta el ancho al 100% del contenedor */
+            height: auto; /* Permite que la altura se ajuste automáticamente */
+            margin-right: 1em; /* Añade margen derecho */
+            object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+        }
+
+        .book-info {
+            flex: 1; /* Toma todo el espacio disponible */
+        }
+
+        /* Estilos del botón de descarga */
+        .download-btn {
+            display: inline-block; /* Muestra el botón como un bloque en línea */
+            padding: 0.5em 1em; /* Añade relleno */
+            margin-top: 1em; /* Añade margen superior */
+            background-color: #84a0eb; /* Establece el color de fondo */
+            color: #fff; /* Establece el color del texto */
+            text-decoration: none; /* Elimina la decoración del enlace */
+            border-radius: 5px; /* Añade esquinas redondeadas */
+        }
+
+        .download-btn:hover {
+            background-color: #5a7abe; /* Cambia el color de fondo al pasar el cursor */
+        }
+
+        /* Estilos del pie de página */
+        footer {
+            background-color: #333; /* Establece el color de fondo */
+            color: #fff; /* Establece el color del texto */
+            text-align: center; /* Centra el contenido horizontalmente */
+            padding: 1em 0; /* Añade relleno superior e inferior */
+            margin-top: auto; /* Mantiene el pie de página abajo si el contenido es corto */
+        }
+
+        /* Estilos para justificar el texto del resumen */
+        .book-info .summary {
+            text-align: justify; /* Justifica el texto */
+        }
+    </style>
+</Layout1>

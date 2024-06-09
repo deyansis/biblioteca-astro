@@ -1,0 +1,254 @@
+---
+import Layout1 from "../../layouts/layout1.astro";
+import { storeUser } from "../../store/user.store";
+
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+
+<Layout1 title="Politica">
+    <main>
+        <section class="books-container">
+            <article class="book-container">
+                <h2>
+                    Impacto del crédito agrario en el PBI agropecuario del Perú,
+                    2017-2022
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/libro001.png"
+                        alt="Portada del Libro 1"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p>
+                            <strong>Autor:</strong> Condo Huaman, Maria Nayeli <br
+                            /> Galvan Ollague, Fiorella Aracely
+                        </p>
+                        <p><strong>Año:</strong> 2023</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            La finalidad de la presente investigación fue
+                            determinar el impacto del Crédito Agrario en el PBI
+                            Agropecuario del Perú durante el Periodo 2017-2022,
+                            de manera que, sirva como referencia y contraste en
+                            la realización de estudios posteriores. Presenta un
+                            enfoque cuantitativo y es de tipo aplicado con un
+                            diseño no experimental y un nivel
+                            correlacional-causal. El estudio se fundamenta en
+                            base a la teoría Keynesiana, además se planteó un
+                            modelo de regresión lineal múltiple para determinar
+                            la relación entre las variables. La población y la
+                            muestra estuvo determinada por los 72 datos
+                            recopilados de las páginas oficiales del BCRP y SBSS
+                            los cuales sirvieron para realizar el análisis
+                            econométrico a través del método de cointegración de
+                            Engle y Granger y posterior a ello mediante el
+                            Modelo de Mínimos Cuadrados Ordinarios (MCO) se
+                            estimaron los parámetros del modelo de regresión.
+                            Los resultados obtenidos demostraron que los
+                            parámetros de la variable Crédito Agrario en la
+                            regresión lineal son positivos, excepto los
+                            parámetros Crédito Agrario a grandes empresas y
+                            Crédito Agrario a Medianas empresas los cuales no
+                            son significativos en la explicación del PBI
+                            Agropecuario, sin embargo, el R- Cuadrado del modelo
+                            es 0.71, lo cual indica que el modelo explica al 71%
+                            de precisión en los efectos del Crédito Agrario
+                            sobre el PBI Agropecuario Peruano.
+                        </p>
+                        <a
+                            href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/139717/Condo_HMN-Galvan_OFA-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a
+                        >
+                    </div>
+                </div>
+            </article>
+            <article class="book-container">
+                <h2>
+                    Economía circular y desarrollo sustentable en el sector
+                    agricultura en la provincia de Barranca, 2022
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/libro 002.png"
+                        alt="Portada del Libro 2"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p>
+                            <strong>Autores:</strong> Gularte Mendoza Astrid Carolina
+                            Cristina
+                        </p>
+                        <p><strong>Año:</strong> 2023</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            El objetivo de esta investigación fue determinar la
+                            relación entre la economía circular y desarrollo
+                            sustentable en el sector agrario en la provincia de
+                            Barranca, 2022. El método que se empleo fue
+                            hipotético deductivo, con enfoque cuantitativo, de
+                            tipo aplicativa, de nivel descriptivo, correlacional
+                            y exploratorio, con diseño no experimental de corte
+                            transversal. Se empleó la técnica de la encuesta,
+                            donde las variables fueron medidas a través de un
+                            cuestionario con respuesta en escala Likert de cinco
+                            niveles. Ambas variables contaron con 25 ítems cada
+                            una, aplicado a una muestra de 113 agricultores que
+                            fueron empadronados por la Municipalidad de
+                            Barranca, según el Padrón de Productores Agrarios.
+                            Los resultados arrojaron que para cada una de las
+                            variables explicativas el nivel de relación es
+                            significativamente al desarrollo sustentable. Sin
+                            embargo, cuando se considera a las tres dimensiones
+                            como regresaras del desarrollo sustentable, la
+                            magnitud de la dimensión, producción cíclica, se
+                            reduce a cero. Pese a ello, de acuerdo al modelo
+                            econométrico de regresión lineal, el modelo mantiene
+                            su significancia. Se concluyó, que la economía
+                            circular influye significativamente en el desarrollo
+                            circular dentro del sector agricultura en la
+                            provincia de Barranca. Donde las prácticas como
+                            optimización de recursos y conservación de recursos
+                            son las que llevan a un mayor desenvolvimiento del
+                            desarrollo sustentable en el rubro. Tras esta
+                            síntesis de la investigación, se recomienda que el
+                            Gobierno debe expandir las políticas y normas de
+                            enfoque circular en el sector agrícola a nivel
+                            nacional, regional y local para que los agricultores
+                            tengan más familiarización con el concepto del
+                            modelo de economía circular y así les permita
+                            realizar mejores tomas de decisiones en su actividad
+                            que repercutirá en beneficios económicos, sociales y
+                            ambientales.
+                        </p>
+                        <a
+                            href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/139071/Gularte_MACC-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a
+                        >
+                    </div>
+                </div>
+
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        background-image: url("/imagenes/c2dedc.png"); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+                        background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+                        background-repeat: no-repeat; /* Evita que la imagen se repita */
+                        background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+                    }
+
+                    /* Estilos del encabezado */
+                    .header-container {
+                        background-color: #333; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        padding: 1em 0; /* Añade relleno superior e inferior */
+                        text-align: center; /* Centra el contenido horizontalmente */
+                    }
+
+                    .header-container h1 {
+                        margin: 0; /* Elimina el margen superior e inferior del encabezado */
+                    }
+
+                    nav ul {
+                        list-style: none; /* Elimina los estilos de lista predeterminados */
+                        padding: 0; /* Elimina el relleno predeterminado */
+                        margin: 0; /* Elimina el margen predeterminado */
+                        display: flex; /* Utiliza el modelo de caja flexible */
+                        justify-content: center; /* Los elementos hijos se centran horizontalmente */
+                    }
+
+                    nav ul li {
+                        margin: 0 1em; /* Añade márgenes a los elementos de la lista */
+                    }
+
+                    nav ul li a {
+                        color: #ece1e1; /* Establece el color del texto */
+                        text-decoration: none; /* Elimina la decoración del enlace */
+                    }
+
+                    /* Estilos del contenido principal */
+                    main {
+                        flex: 1; /* El contenido principal ocupa todo el espacio disponible */
+                        padding: 100px; /* Añade relleno superior e inferior */
+                    }
+
+                    /* ESTO ES LO MAS IMPORTANTE DEY */
+
+                    /* Estilos del contenedor de libros */
+                    .books-container {
+                        max-width: 1000px; /* Establece el ancho máximo */
+                        width: 100%; /* Ocupa todo el ancho disponible */
+                        margin: 0 auto; /* Centra el contenedor horizontalmente */
+                        padding: 1em; /* Añade relleno */
+                    }
+
+                    /* Estilos de cada contenedor de libro individual */
+                    .book-container {
+                        background-color: hsl(0, 0%, 100%); /* Establece el color de fondo */
+                        margin-bottom: 2em; /* Añade margen inferior */
+                        padding: 1em; /* Añade relleno */
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra */
+                    }
+
+                    .book-container h2 {
+                        margin-top: 0; /* Elimina el margen superior del título del libro */
+                    }
+
+                    /* Estilos del detalle del libro */
+                    .book-details {
+                        display: flex; /* Utiliza el modelo de caja flexible */
+                        flex-wrap: wrap; /* Permite que los detalles se envuelvan en múltiples líneas */
+                    }
+
+                    .book-cover {
+                        max-width: 200px; /* Establece el ancho máximo */
+                        max-height: 300px; /* Establece la altura máxima */
+                        width: 100%; /* Ajusta el ancho al 100% del contenedor */
+                        height: auto; /* Permite que la altura se ajuste automáticamente */
+                        margin-right: 1em; /* Añade margen derecho */
+                        object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+                    }
+
+                    .book-info {
+                        flex: 1; /* Toma todo el espacio disponible */
+                    }
+
+                    /* Estilos del botón de descarga */
+                    .download-btn {
+                        display: inline-block; /* Muestra el botón como un bloque en línea */
+                        padding: 0.5em 1em; /* Añade relleno */
+                        margin-top: 1em; /* Añade margen superior */
+                        background-color: #84a0eb; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        text-decoration: none; /* Elimina la decoración del enlace */
+                        border-radius: 5px; /* Añade esquinas redondeadas */
+                    }
+
+                    .download-btn:hover {
+                        background-color: #5a7abe; /* Cambia el color de fondo al pasar el cursor */
+                    }
+
+                    /* Estilos del pie de página */
+                    footer {
+                        background-color: #333; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        text-align: center; /* Centra el contenido horizontalmente */
+                        padding: 1em 0; /* Añade relleno superior e inferior */
+                        margin-top: auto; /* Mantiene el pie de página abajo si el contenido es corto */
+                    }
+
+                    /* Estilos para justificar el texto del resumen */
+                    .book-info .summary {
+                        text-align: justify; /* Justifica el texto */
+                    }
+                </style>
+            </article>
+        </section>
+    </main></Layout1
+>

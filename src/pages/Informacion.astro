@@ -1,0 +1,169 @@
+---
+import Layout1 from "../layouts/layout1.astro";
+---
+
+<Layout1 title="Informacion">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+   
+    <!-- Contenido de la página -->
+    <main>
+        <section id="subtitulo1">
+            <h2>Portal de investigacíon academica </h2>
+            <p>Bienvenido a nuestro portal de investigación academica. Aquí puedes acceder a una amplia variedad de documentos electrónicos, y recursos educativos. Además, es el centro depositario de la universidad bibliográfico, 
+                digital, documental, fílmico, fotográfico y musical peruano, así como del capital universal que posee 
+                con la finalidad de coadyuvar al desarrollo cultural científico y tecnológico, contribuyendo al desarrollo 
+                económico y social, y apoyando a la formación de los jóvenes. Asimismo, representa una fuente de conocimiento
+                para toda la sociedad académica, garantizando su integridad y facilitando su acceso a toda la ciudadanía y 
+                las generaciones futuras. En este marco, la Biblioteca Nacional del Perú, que también es la primera institución
+                cultural del Perú independiente, tiene como uno de sus objetivos estratégicos el “Gestionar los servicios de 
+                acceso, difusión y uso de la información en favor de la ciudadanía”. Es por ello, que a inicios del presente 
+                siglo, inició el proceso de digitalización del material bibliográfico documental que custodia, en especial, 
+                los de dominio público. Esto permitió que se inaugurara el servicio en línea de su Biblioteca Digital 
+                (BNV Digital), la cual viene desarrollando una mejora continua hasta la actualidad. La actual y renovada 
+                plataforma ha sido implementada y modificada, bajo estándares de calidad, que permiten el acceso a la 
+                información de manera oportuna, estructurada y fiable.</p>
+        </section>
+    
+        <section id="Caracteristicas y beneficios">
+            <h2>CARACTERISTICAS Y BENEFICIOS</h2>
+            <p> Las principales caracterisitcas y beneficios de la BEV Digital son: </p>
+            <div class="centered-list">
+                <ol>
+                    <li>Libre, permanente y simultáneo acceso al material bibliográfico documental de dominio público, permitiendo la descarga del mismo, para una lectura “con o sin conexión</li>
+                    <li>Funcional e intuitiva, gracias a sus metadatos estandarizados y normalizados que permiten una rápida recuperación de la información.</li>
+                    <li>Adaptabilidad a cualquier dispositivo digital como: computadora, laptop, celular inteligente y tabletas con conexión a internet.</li>
+                    <li>Capacidad de interoperabilidad con plataformas externas para intercambiar información.</li>
+                </ol>
+            </div>
+        </section>
+    
+        <section id="organizado-en-seis-comunidades">
+            <h2>ORGANIZADO EN SEIS COMUNIDADES</h2>
+            <p>La BNP Digital también contiene material bibliográfico documental que permite el estudio y construcción de la identidad cultural, social y política peruana. Este contenido se encuentra organizado en seis comunidades:
+                monografias, ensayo, trabajo de investigación y investigación de acción, informe academico, Informe estatico. Entre estos, destacan los siguientes:</p>
+            <div class="lista1">
+                <ol>
+                    <li>En monografías y informes academicos impresos de autores peruanos y extranjeros de una amplia variedad de temas, hallamos joyas bibliográficas como la Doctrina christiana y catecismo para instrvcción 
+                        de los indios, o el Opus pulcherrimuz chiromantie, libro que perteneció a la biblioteca del libertador José de San Martín. Además de obras importantes de autores peruanos como Mariano Eduardo de Rivero, 
+                        Clorinda Matto de Turner, Manuel González Prada, Elvira García y García, José Santos Chocano, entre otros.</li><br>
+                    <li>En trabajo de investigacion, reúne diversa documentación proveniente de archivos personales, institucionales, históricos y obras literarias que comprenden el siglo XVI hasta inicios del siglo XX. Los cuales brindan 
+                        variada información como testamentos de descendientes de la nobleza incaica, decretos expedidos por presidentes, diarios situados en la Guerra del Pacífico, la cuantiosa colección de cartas de Ricardo Palma 
+                        y poemas de autoras como Magda Portal.</li><br>
+                    <li>En ensayos, podemos encontrar publicaciones peruanas que datan de finales del siglo XVIII al siglo XX, provenientes de diversas zonas del país. Entre ellos el Mercurio Peruano, La Aurora 
+                        Peruana de Cusco, Minerva Peruana, La Abeja Republicana, El Fénix de Tacna y el Correo Literario de Puno. Del mismo modo, revistas como El álbum, revista semanal para el Bello Sexo, El Perú Ilustrado, 
+                        Alma Latina, entre otras. Éstas abarcan siglos de acontecimientos, debates y cultura que han dado forma a la historia del Perú.</li><br>
+                    <li>Informe estatico, comprenden una gran cantidad y variedad de material documental, desde manuscritos y libros antiguos, hasta correspondencia personal de figuras notables. Dentro de las colecciones que alberga 
+                        la plataforma podemos destacar: la Colección Ricardo Palma, Colección Coronel Zegarra, Colección Nicolás de Piérola, Colección Pedro Zulen y Colección Porras Barrenechea.</li><br>
+                </ol>
+            </div>
+        </section>
+
+        
+    </main>
+
+    <footer>
+        <p>Derechos de autor &copy; 2024 Biblioteca Digital Educativa Vallejiana</p>
+    </footer>
+</Layout1>
+
+<style>
+    /* Estilos generales */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("imagenes/c2dedc.png");
+        background-position: center;
+        background-size: cover;
+        color: #fff;
+        line-height: 1.6;
+    }
+
+    main {
+        background: #abb7d8;
+        padding: 100px 100px; /* Ajuste combinado */
+         /* Fondo oscuro con transparencia */
+        border-radius: 20px;
+        margin: 20px   70px;
+    }
+
+    section {
+        padding: 20px; /* Ajustado a 20px */
+        margin-bottom: 20px; /* Ajuste para reducir el espacio entre las secciones */
+        background: rgba(255, 255, 255, 0.1); /* Fondo blanco con transparencia */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor de las secciones */
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 35px;
+        color: rgb(17, 106, 123);
+        font-weight: bold; 
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px #1572A1; /* Sombra en el texto */
+    }
+
+    p {
+        text-align: justify;
+        font-size: 18px;
+        margin: 0 20px; /* Margen izquierdo y derecho combinados */
+        color: black;
+        font-weight: bold;
+    }
+
+    footer {
+        border-top: 2px solid #ffd700;
+        background-position: center;
+    }
+    .centered-list {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        color: rgb(8, 8, 8);
+        margin: 0 20px; /* Margen izquierdo y derecho combinados */
+        font-weight: bold;
+        
+    }
+
+
+    .lista1 {
+        text-align: justify;
+        margin: 0 40px; /* Margen izquierdo y derecho combinados */
+        font-size: 20px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #080808;
+        font-weight: bold;
+    }
+
+    .lista2{
+        color: #1572A1;
+        text-align: justify;
+        margin: 0 20px; /* Margen izquierdo y derecho combinados */
+        font-size: 18px;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        
+    }
+
+    /* Transiciones y efectos */
+    h2, p, li {
+        transition: all 0.3s ease-in-out; /* Transición suave para los elementos */
+    }
+
+    h2:hover, p:hover, li:hover {
+        color: #01204E; /* Cambia el color al pasar el cursor */
+        transform: scale(1.05); /* Escala ligeramente el elemento */
+    }
+
+    /* Estilos adicionales para enlaces */
+    a {
+        color: #01204E;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color:#01204E;
+    }
+</style>

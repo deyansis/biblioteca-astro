@@ -1,0 +1,235 @@
+---
+import Layout1 from "../../layouts/layout1.astro";
+import { storeUser } from "../../store/user.store";
+
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+
+<Layout1 title="Diseño, construcción y mantenimiento de sitios web">
+    <main>
+        <section class="books-container">
+            <article class="book-container">
+                <h2>
+                    Rediseño de un sitio web de la Agencia Formia en su
+                    percepción de los usuarios de Lima – 2022
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/d1.jpg"
+                        alt="Portada del Libro 1"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p>
+                            <strong>Autor:</strong> Espino Mejía, Pedro Isaías
+                        </p>
+                        <p><strong>Año:</strong> 2022</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            La presente investigación se tuvo como título
+                            “Rediseño de un sitio web de la Agencia Formia en su
+                            percepción de los usuarios de Lima – 2022”, y como
+                            objetivo determinar la influencia del rediseño de un
+                            sitio web de la agencia Formia en su percepción de
+                            los usuarios de Lima – 2022. Este trabajo de
+                            investigación es de tipo aplicada, de diseño
+                            cuasiexperimental, con un enfoque cuantitativo de
+                            nivel explicativo. Para el desarrollo de la
+                            investigación se tiene una población de 130 y una
+                            muestra de 94 clientes de la Agencia Formia,
+                            formados en dos grupos: control y experimental. El
+                            instrumento empleado, es un cuestionario que consta
+                            de 14 interrogantes, con una confiabilidad de 0.801
+                            para el grupo control y de 0.918 para el grupo
+                            experimental. Así mismo, en los resultados de
+                            nuestra hipótesis de investigación, muestra una sig.
+                            de 0.000 (p=0.000 - 0.05), en el grupo control y
+                            experimental, rechazando la hipótesis nula y
+                            aceptando la hipótesis de investigación, existiendo
+                            una influencia significativa del rediseño web de la
+                            agencia Formia en su percepción de los usuarios de
+                            Lima – 2022. Por último, se concluye, que existe una
+                            influencia del rediseño web en los usuarios, gracias
+                            al uso de las dimensiones de estudio.
+                        </p>
+                        <a
+                            href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/108271/Espino_MPI-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a
+                        >
+                    </div>
+                </div>
+            </article>
+            <article class="book-container">
+                <h2>
+                    Sitio web para la empresa Joperzs en la decisión de compra
+                    de sus usuarios en San Juan de Miraflores, Lima 2022
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/libro 002.png"
+                        alt="Portada del Libro 2"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p>
+                            <strong>Autores:</strong> Quinto Rico, Moises
+                        </p>
+                        <p><strong>Año:</strong> 2022</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            Esta presente investigación titulada “Sitio Web para
+                            la empresa Joperzs en la decisión de compra de sus
+                            usuarios en San Juan de Miraflores, Lima 2022”,
+                            teniendo como objetivo determinar cómo afecta el
+                            diseño del Sitio Web para la empresa Joperzs en la
+                            decisión de compra de sus usuarios en San Juan de
+                            Miraflores Lima 2022. Se elaboró un nuevo Sitio Web,
+                            implementando una tienda virtual para incentivar el
+                            proceso de decisión de compra. Esta investigación
+                            cuenta con un diseño cuasiexperimental, con un
+                            enfoque cuantitativo, siendo esta de tipo aplicada
+                            ya que se busca resolver un problema, brindando una
+                            solución. Con la corroboración de 3 expertos obtuvo
+                            como resultado un valor menor a 0,05 en la prueba
+                            binomial. Se aplico una corroboración de control y
+                            una experimental a una muestra de 108 usuarios,
+                            aplicado a través del cuestionario. Obteniendo como
+                            resultados favorecedores, aceptando la hipótesis de
+                            la investigación y rechazada la nula, dado que el
+                            valor de significancia fue de 0,000, lo cual este es
+                            un valor menor a 0,05 y está dentro de lo permitido
+                            y determinando una correlación positiva alta.
+                            Llegando a la conclusión que el diseño de un sitio
+                            web si afecta en la decisión de compra
+                        </p>
+                        <a
+                            href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/93659/Quinto_RM-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a
+                        >
+                    </div>
+                </div>
+
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                        background-image: url("/imagenes/c2dedc.png"); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+                        background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+                        background-repeat: no-repeat; /* Evita que la imagen se repita */
+                        background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+                    }
+
+                    /* Estilos del encabezado */
+                    .header-container {
+                        background-color: #333; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        padding: 1em 0; /* Añade relleno superior e inferior */
+                        text-align: center; /* Centra el contenido horizontalmente */
+                    }
+
+                    .header-container h1 {
+                        margin: 0; /* Elimina el margen superior e inferior del encabezado */
+                    }
+
+                    nav ul {
+                        list-style: none; /* Elimina los estilos de lista predeterminados */
+                        padding: 0; /* Elimina el relleno predeterminado */
+                        margin: 0; /* Elimina el margen predeterminado */
+                        display: flex; /* Utiliza el modelo de caja flexible */
+                        justify-content: center; /* Los elementos hijos se centran horizontalmente */
+                    }
+
+                    nav ul li {
+                        margin: 0 1em; /* Añade márgenes a los elementos de la lista */
+                    }
+
+                    nav ul li a {
+                        color: #ece1e1; /* Establece el color del texto */
+                        text-decoration: none; /* Elimina la decoración del enlace */
+                    }
+
+                    /* Estilos del contenido principal */
+                    main {
+                        flex: 1; /* El contenido principal ocupa todo el espacio disponible */
+                        padding: 100px; /* Añade relleno superior e inferior */
+                    }
+
+                    /* ESTO ES LO MAS IMPORTANTE DEY */
+
+                    /* Estilos del contenedor de libros */
+                    .books-container {
+                        max-width: 1000px; /* Establece el ancho máximo */
+                        width: 100%; /* Ocupa todo el ancho disponible */
+                        margin: 0 auto; /* Centra el contenedor horizontalmente */
+                        padding: 1em; /* Añade relleno */
+                    }
+
+                    /* Estilos de cada contenedor de libro individual */
+                    .book-container {
+                        background-color: hsl(0, 0%, 100%); /* Establece el color de fondo */
+                        margin-bottom: 2em; /* Añade margen inferior */
+                        padding: 1em; /* Añade relleno */
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra */
+                    }
+
+                    .book-container h2 {
+                        margin-top: 0; /* Elimina el margen superior del título del libro */
+                    }
+
+                    /* Estilos del detalle del libro */
+                    .book-details {
+                        display: flex; /* Utiliza el modelo de caja flexible */
+                        flex-wrap: wrap; /* Permite que los detalles se envuelvan en múltiples líneas */
+                    }
+
+                    .book-cover {
+                        max-width: 200px; /* Establece el ancho máximo */
+                        max-height: 300px; /* Establece la altura máxima */
+                        width: 100%; /* Ajusta el ancho al 100% del contenedor */
+                        height: auto; /* Permite que la altura se ajuste automáticamente */
+                        margin-right: 1em; /* Añade margen derecho */
+                        object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+                    }
+
+                    .book-info {
+                        flex: 1; /* Toma todo el espacio disponible */
+                    }
+
+                    /* Estilos del botón de descarga */
+                    .download-btn {
+                        display: inline-block; /* Muestra el botón como un bloque en línea */
+                        padding: 0.5em 1em; /* Añade relleno */
+                        margin-top: 1em; /* Añade margen superior */
+                        background-color: #84a0eb; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        text-decoration: none; /* Elimina la decoración del enlace */
+                        border-radius: 5px; /* Añade esquinas redondeadas */
+                    }
+
+                    .download-btn:hover {
+                        background-color: #5a7abe; /* Cambia el color de fondo al pasar el cursor */
+                    }
+
+                    /* Estilos del pie de página */
+                    footer {
+                        background-color: #333; /* Establece el color de fondo */
+                        color: #fff; /* Establece el color del texto */
+                        text-align: center; /* Centra el contenido horizontalmente */
+                        padding: 1em 0; /* Añade relleno superior e inferior */
+                        margin-top: auto; /* Mantiene el pie de página abajo si el contenido es corto */
+                    }
+
+                    /* Estilos para justificar el texto del resumen */
+                    .book-info .summary {
+                        text-align: justify; /* Justifica el texto */
+                    }
+                </style>
+            </article>
+        </section>
+    </main></Layout1
+>

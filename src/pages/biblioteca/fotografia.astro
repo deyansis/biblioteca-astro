@@ -1,0 +1,248 @@
+---
+import Layout1 from "../../layouts/layout1.astro" ;
+import { storeUser } from "../../store/user.store";
+
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+<Layout1 title="Libros Metabiblioteca">
+    <header>
+        <div class="header-container">
+            <h1>DISEÑO GRAFICO</h1>
+           
+        </div>
+    </header>
+    <main>
+        <section class="books-container">
+            <article class="book-container">
+                <h2>
+                    Campaña gráfica sobre materiales ecoamigables y su
+                    influencia en la concientización de estudiantes en la
+                    Universidad César Vallejo, Lima, 2023
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/libro 01.png"
+                        alt="Portada del Libro 1"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p>
+                            <strong>Autor:</strong> Espiritu Carrasco, Brack Daniel’s
+                        </p>
+                        <p><strong>Año:</strong> 2023</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            La presente investigación, "Campaña gráfica sobre
+                            materiales ecoamigables y su influencia en la
+                            concientización de estudiantes en la Universidad
+                            César Vallejo, Lima, 2023", tuvo como objetivo
+                            determinar la influencia de la campaña gráfica sobre
+                            materiales ecoamigables en la concientización de
+                            estudiantes en la Universidad César Vallejo, Lima,
+                            2023. Contando con un enfoque cuantitativo, un
+                            diseño cuasiexperimental aplicado, y dos grupos,
+                            Control y Experimental, compuestos por 54
+                            estudiantes universitarios cada uno. Estos
+                            respondieron a la técnica de encuesta mediante un
+                            cuestionario de 15 preguntas como instrumento, el
+                            cual mostró una buena confiabilidad según el Alfa de
+                            Cronbach. Finalmente, se determinó un coeficiente de
+                            0.611, con una correlación positiva moderada y una
+                            significancia de .000, indicando una influencia
+                            entre las variables de estudio y aceptando la
+                            hipótesis de la investigación. Se recomienda seguir
+                            ciertos puntos clave para la realización de campañas
+                            gráficas que busquen mejorar aspectos sociales al
+                            abordar problemáticas ambientales.
+                        </p>
+                        
+                            <a href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/140184/Espiritu_CBD-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a>
+                       
+                    </div>
+                </div>
+            </article>
+            <article class="book-container">
+                <h2>
+                    Impacto del diseño de afiches publicitarios en la percepción
+                    visual del público en la empresa Comercial Vicky,
+                    Callao,2023
+                </h2>
+                <div class="book-details">
+                    <img
+                        src="/imagenes/libro 02.png"
+                        alt="Portada del Libro 2"
+                        class="book-cover"
+                    />
+                    <div class="book-info">
+                        <p><strong>Autores:</strong> Rosas Diaz, Juan Carlos</p>
+                        <p><strong>Año:</strong> 2023</p>
+                        <p><strong>Resumen:</strong></p>
+                        <p class="summary">
+                            La presente investigación, denominada “Impacto del
+                            diseño de afiches publicitarios en la percepción
+                            visual del público en la empresa Comercial Vicky,
+                            Callao, 2023” fue originada, debido a la importancia
+                            que ha tenido el diseño de afiches respecto a la
+                            publicidad y la forma en que el público pueda ser
+                            atraído logrando una venta cada vez más atractiva
+                            cubriendo las necesidades y/o requerimientos de los
+                            clientes. Por tal motivo, se trazó como objetivo
+                            determinar el impacto del diseño de afiches
+                            publicitarios en la percepción visual del público en
+                            la empresa Comercial Vicky, Callao, 2023. El trabajo
+                            de estudio, contó con un diseño experimental de
+                            nivel cuasi experimental con enfoque cuantitativo y
+                            de tipo aplicada. Se identificó como población 150
+                            usuarios, que fueron los compradores más frecuentes,
+                            donde se obtuvo una muestra de 108 usuarios,
+                            dividido en grupos control y experimental. La
+                            técnica que se aplicó fue una encuesta con 20 ítems
+                            con escala de tipo Likert, a través del coeficiente
+                            de Alfa de Cronbach, se logró una confiabilidad de
+                            0.960. Posteriormente, se elaboró el análisis
+                            descriptivo e inferencial, donde la hipótesis
+                            planteada fue contrastada, con una significancia
+                            (p=0.000,0.05), siendo una correlación positiva
+                            basada en la prueba de Rho de Spearman. </p>
+                       
+                        <a href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/136535/Rosas_DJC-SD.pdf?sequence=1&isAllowed=y"
+                            class="download-btn"
+                            download>Descargar PDF</a>
+                    </div>
+                </div>
+            </article>
+            <!-- Agrega más artículos de libros aquí -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 GRUPO 05 Todos los derechos reservados.</p>
+    </footer>
+</Layout1>
+<style>
+    /* Estilos generales del cuerpo del documento */
+
+    /* Estilos generales del cuerpo del documento */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/imagenes/c2dedc.png'); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Fija la imagen de fondo para que no se desplace con el contenido */
+}
+
+/* Estilos del encabezado */
+.header-container {
+    background-color: #333; /* Establece el color de fondo */
+    color: #fff; /* Establece el color del texto */
+    padding: 1em 0; /* Añade relleno superior e inferior */
+    text-align: center; /* Centra el contenido horizontalmente */
+}
+
+.header-container h1 {
+    margin: 0; /* Elimina el margen superior e inferior del encabezado */
+}
+
+nav ul {
+    list-style: none; /* Elimina los estilos de lista predeterminados */
+    padding: 0; /* Elimina el relleno predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+    display: flex; /* Utiliza el modelo de caja flexible */
+    justify-content: center; /* Los elementos hijos se centran horizontalmente */
+}
+
+nav ul li {
+    margin: 0 1em; /* Añade márgenes a los elementos de la lista */
+}
+
+nav ul li a {
+    color: #ece1e1; /* Establece el color del texto */
+    text-decoration: none; /* Elimina la decoración del enlace */
+}
+
+/* Estilos del contenido principal */
+main {
+    flex: 1; /* El contenido principal ocupa todo el espacio disponible */
+    padding: 2em 0; /* Añade relleno superior e inferior */
+}
+
+
+
+
+/* ESTO ES LO MAS IMPORTANTE DEY */
+
+/* Estilos del contenedor de libros */
+.books-container {
+    max-width: 1000px; /* Establece el ancho máximo */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 1em; /* Añade relleno */
+}
+
+/* Estilos de cada contenedor de libro individual */
+.book-container {
+    background-color: white; /* Establece el color de fondo */
+    margin-bottom: 2em; /* Añade margen inferior */
+    padding: 1em; /* Añade relleno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade sombra */
+}
+
+.book-container h2 {
+    margin-top: 0; /* Elimina el margen superior del título del libro */
+}
+
+/* Estilos del detalle del libro */
+.book-details {
+    display: flex; /* Utiliza el modelo de caja flexible */
+    flex-wrap: wrap; /* Permite que los detalles se envuelvan en múltiples líneas */
+}
+
+.book-cover {
+    max-width: 200px; /* Establece el ancho máximo */
+    max-height: 300px; /* Establece la altura máxima */
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    margin-right: 1em; /* Añade margen derecho */
+    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor */
+}
+
+
+.book-info {
+    flex: 1; /* Toma todo el espacio disponible */
+}
+
+/* Estilos del botón de descarga */
+.download-btn {
+    display: inline-block; /* Muestra el botón como un bloque en línea */
+    padding: 0.5em 1em; /* Añade relleno */
+    margin-top: 1em; /* Añade margen superior */
+    background-color: #84a0eb; /* Establece el color de fondo */
+    color: #fff; /* Establece el color del texto */
+    text-decoration: none; /* Elimina la decoración del enlace */
+    border-radius: 5px; /* Añade esquinas redondeadas */
+}
+
+.download-btn:hover {
+    background-color: #5a7abe; /* Cambia el color de fondo al pasar el cursor */
+}
+
+/* Estilos del pie de página */
+footer {
+    background-color: #333; /* Establece el color de fondo */
+    color: #fff; /* Establece el color del texto */
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding: 1em 0; /* Añade relleno superior e inferior */
+    margin-top: auto; /* Mantiene el pie de página abajo si el contenido es corto */
+}
+
+/* Estilos para justificar el texto del resumen */
+.book-info .summary {
+    text-align: justify; /* Justifica el texto */
+}
+

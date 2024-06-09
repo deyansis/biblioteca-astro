@@ -1,14 +1,21 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { storeUser } from "../../store/user.store";
+
+
+const {isAuth} = storeUser.getState()
+
+if(isAuth) return Astro.redirect("/login/logout");
 
 const URL_API = import.meta.env.URL_API;
+
 
 if (Astro.request.method === "POST") {
     try {
         const data = await Astro.request.formData();
         const nombre = data.get("nombreRegister");
 
-        // Aqui se registra
+        // Registro de usuario
         if (nombre) {
             const apellido_paterno = data.get("apellidoPaternoRegister");
             const apellido_materno = data.get("apellidoMaternoRegister");
@@ -31,7 +38,7 @@ if (Astro.request.method === "POST") {
 
             return Astro.redirect("/login");
         } else {
-            // Aqui hace login
+            // Inicio de sesión
             const emailLogin = data.get("emailLogin");
             const passwordLogin = data.get("passwordLogin");
 
@@ -53,7 +60,13 @@ if (Astro.request.method === "POST") {
 
             if (response) {
                 if (response.status === "success") {
-                    return Astro.redirect("/biblioteca");
+                    const user_sesion = response.data.user;
+                    storeUser.setState({
+                        user: user_sesion,
+                        isAuth: true
+                    })
+                    console.log(storeUser.getState())
+                    return Astro.redirect("http://localhost:4321/"); // Redirigir a la página de inicio
                 } else {
                     return Astro.redirect("/login");
                 }
@@ -73,7 +86,6 @@ if (Astro.request.method === "POST") {
             <div class="form-container sign-up-container">
                 <form method="post">
                     <h1>Crea tu Cuenta</h1>
-
                     <input
                         type="text"
                         placeholder="Nombre"
@@ -105,7 +117,6 @@ if (Astro.request.method === "POST") {
             <div class="form-container sign-in-container">
                 <form method="post">
                     <h1>Iniciar Sesión</h1>
-
                     <input type="text" placeholder="Email" name="emailLogin" />
                     <input
                         type="password"

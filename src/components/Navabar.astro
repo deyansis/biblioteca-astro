@@ -1,5 +1,7 @@
 ---
+import { storeUser } from "../store/user.store";
 
+const { isAuth, user } = storeUser.getState();
 ---
 
 <header class="header">
@@ -8,14 +10,33 @@
 
         <ul class="nav_item">
             <li class="nav_item">
-                <a href="#" class="nav_link">Inicio</a>
-                <a href="Informacion.html" class="nav_link">Información</a>
-                <a href="Servicio.html" class="nav_link">Servicios</a>
-                <a href="Biblioteca.html" class="nav_link">Biblioteca</a>
-                <a href="Reporte.html" class="nav_link">Reporte</a>
+                <a href="http://localhost:4321/#" class="nav_link">Inicio</a>
+                <a href="http://localhost:4321/Informacion" class="nav_link"
+                    >Información</a
+                >
+                <a href="http://localhost:4321/servicios" class="nav_link"
+                    >Guia de accesos</a
+                >
+                <a href="http://localhost:4321/pastelito" class="nav_link"
+                    >Foro</a
+                >
+                <a href="http://localhost:4321/reporte" class="nav_link"
+                    >Reporte</a
+                >
             </li>
         </ul>
 
-        <a class="button" href="/login">Iniciar Sesión</a>
+        {isAuth && <h4 style="color:white;">{user.nombre}</h4>}
+        {
+            isAuth ? (
+                <a class="button" href="/login/logout">
+                    Cerrar Sesion
+                </a>
+            ) : (
+                <a class="button" href="/login">
+                    Iniciar Sesion
+                </a>
+            )
+        }
     </nav>
 </header>
