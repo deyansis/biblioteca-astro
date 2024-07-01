@@ -1,0 +1,94 @@
+---
+import Layout1 from "../layouts/layout1.astro";
+import { storeUser } from "../store/user.store";
+const {isAuth} = storeUser.getState()
+
+if(!isAuth) return Astro.redirect("/login");
+---
+
+<!-- EstadoSolicitud.astro -->
+
+<Layout1 title="Estado de Solicitud">
+    <main class="container">
+      <div class="wrapper">
+        <h1 class="heading">Estado de Solicitud</h1>
+        <div class="solicitud-info">
+          <div class="info-item">
+            <span class="info-label">ID de Solicitud:</span>
+            <span class="info-value">{{ solicitud.id }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Fecha de Envío:</span>
+            <span class="info-value">{{ solicitud.fechaEnvio }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Estado:</span>
+            <span class="info-value">{{ solicitud.estado }}</span>
+          </div>
+          <!-- Agrega más información según sea necesario -->
+        </div>
+        <div class="button-container">
+          <a href="/" class="button">Volver</a>
+        </div>
+      </div>
+    </main>
+  
+    <style>
+      /* Estilos CSS */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+  
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px 20px;
+      }
+  
+      .heading {
+        font-size: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+  
+      .solicitud-info {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+  
+      .info-item {
+        margin-bottom: 10px;
+      }
+  
+      .info-label {
+        font-weight: bold;
+      }
+  
+      .button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+  
+      .button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+  
+      .button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </Layout1>
+  

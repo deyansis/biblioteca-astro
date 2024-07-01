@@ -15,7 +15,7 @@ import Layout1 from "../layouts/layout1.astro";
                     <input type="text" id="name" name="name" required />
                 </div>
                 <div class="form-group">
-                    <label for="document">Documento:</label>
+                    <label for="document"> Tipo de documento:</label>
                     <input
                         type="text"
                         id="document"
@@ -92,119 +92,126 @@ import Layout1 from "../layouts/layout1.astro";
 </script>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-image: url("imagenes/c2dedc.png");
-        background-position: center;
-        background-size: cover;
-        color: #030303;
-        line-height: 1.6;
-    }
-    .container {
-        max-width: 800px;
-        margin: 10px auto;
-        padding: 100px; /* Reducido para mejor estética */
-        background-color: rgb(171, 183, 216);
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        max-width: 1500px;
-    }
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
+    background-position: center;
+    background-size: cover;
+    color: #030303;
+    line-height: 1.6;
+    margin-top: 0; /* Asegura que no haya margen superior */
+}
 
-    h1,
-    h2 {
-        text-align: center;
-        font-size: 35px;
-        color: #116A7B;
-        font-weight: bold; 
-        text-transform: uppercase;
-        text-shadow: 2px 4px 8px #1572A1; /* Sombra en el texto */
-    }
 
-    p {
-        text-align: center;
-        font-size: 1.5em;
-        margin-bottom: 50px;
-        color: black;
-        font-weight: bold; 
-    }
 
-    .comment-form {
-        margin-bottom: 40px;
-    }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 100px; /* Puedes ajustar según tu diseño */
+    background-color: rgba(171, 183, 216, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    max-width: 1500px;
+}
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+h1,
+h2 {
+    text-align: center;
+    font-size: 30px;
+    color: #1f3981;
+    font-weight: bold;
+    text-transform: uppercase; 
+    margin-top: 0; /* Asegura que no haya margen superior */
+    margin-bottom: 10px; /* Ajuste opcional para espaciado */
+}
 
-    .form-group label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-        font-size: 1.2em;
-    }
 
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        font-size: 1.4em;
-    }
+p {
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 50px;
+    color: black;
+    
+}
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
+.comment-form {
+    margin-bottom: 40px;
+}
 
-    .form-group textarea {
-        height: 100px;
-    }
+.form-group {
+    margin-bottom: 20px;
+}
 
-    button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #075985;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.5em;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
 
-    button:hover {
-        background-color: #172554;
-    }
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 1.4em;
+}
 
-    .comments-list ul {
-        list-style: none;
-        padding: 0;
-    }
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    
+}
 
-    .comments-list li {
-        padding: 15px;
-        border-bottom: 1px solid #ccc;
-    }
+.form-group textarea {
+    height: 100px;
+}
 
-    .comments-list strong {
-        display: block;
-        font-size: 10em;
-        color: #333;
-    }
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #1f3981;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .comments-list em {
-        color: #666;
-    }
+button:hover {
+    background-color: #1e59fa;
+}
 
-    .comments-list p {
-        margin: 5px 0 0;
-        color: #555;
-    }
+.comments-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comments-list li {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.comments-list strong {
+    display: block;
+    font-size: 10em;
+    color: #333;
+}
+
+.comments-list em {
+    color: #666;
+}
+
+.comments-list p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
 </style>

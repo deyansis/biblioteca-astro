@@ -1,10 +1,44 @@
 ---
 import Layout1 from "../../layouts/layout1.astro";
 import { storeUser } from "../../store/user.store";
+import type { IDocumento } from "./monografia.astro";
 
-const {isAuth} = storeUser.getState()
+const {isAuth, user} = storeUser.getState()
 
 if(!isAuth) return Astro.redirect("/login");
+
+
+const URL_API = import.meta.env.URL_API;
+
+const documentos: IDocumento[] = await fetch(
+    `${URL_API}/documento/user/${user.id}/5`,
+)
+    .then((response) => {
+        if (!response.ok) {
+            console.error("Error en la solicitud");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        return data.data.documentos;
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        return null;
+    });
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); 
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}
+
+function getYear(dateString) {
+    const date = new Date(dateString);
+    return date.getFullYear();
+}
 ---
 
 <Layout1 title="Informes Estadísticos">
@@ -24,31 +58,85 @@ if(!isAuth) return Astro.redirect("/login");
         </div>
 
         <div class="documents-list">
-            <div class="document-item" data-year="2013">
-                <img src="/imagenes/1.jpg" alt="Portada del Documento 1" class="document-cover">
-                <div class="document-info">
-                    <h2>Relación del tiempo de uso de tecnologías de la información – comunicación y la obesidad en adolescentes de la Institución Educativa Privada “Ingeniería” Noviembre – Diciembre 2013.</h2>
-                    <a href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/11396/palomino_gc.pdf?sequence=1" class="view-btn" target="_blank">Visualizar PDF</a>
-                </div>
-            </div>
-            <div class="document-item" data-year="2021">
-                <img src="/imagenes/2.jpg" alt="Portada del Documento 2" class="document-cover">
-                <div class="document-info">
-                    <h2>Sistema de información web para el procesamiento de informes estadísticos de los establecimientos de salud de la red de salud Lima Norte IV</h2>
-                    <a href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/1769/Rodriguez_CJF.pdf?sequence=1&isAllowed=y" class="view-btn" target="_blank">Visualizar PDF</a>
-                </div>
-            </div>
-            <div class="document-item" data-year="2021">
-                <img src="/imagenes/3.jpg" alt="Portada del Documento 3" class="document-cover">
-                <div class="document-info">
-                    <h2>Implementación de un plan de seguridad y salud para reducir riesgos laborales en el mejoramiento del camino vecinal Mayopampa – Cayara – 2021</h2>
-                    <a href="https://repositorio.ucv.edu.pe/bitstream/handle/20.500.12692/64462/Alarcon_FMY-SD.pdf?sequence=1&isAllowed=y" class="view-btn" target="_blank">Visualizar PDF</a>
-                </div>
-            </div>
+            {
+                documentos.map((doc) => {
+                    return (
+                        <card-documento>
+                            <div
+                                class="document-item"
+                                data-year={getYear(doc.year)}
+                                data-career={doc.carrera_id}
+                            >
+                                <img
+                                    src="/imagenes/02.jpg"
+                                    alt="Portada del Documento 2"
+                                    class="document-cover"
+                                />
+                                <div
+                                    class="document-info"
+                                    data-base64={doc.archivo_base64}
+                                    data-namedoc={doc.nombre_archivo}
+                                >
+                                    <h2>{`${doc.autor} - ${doc.nombre_archivo} - ${formatDate(doc.year)}`}</h2>
+                                    <button id="download-button" class="view-btn">
+                                        Visualizar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </card-documento>
+                    );
+                })
+            }
             <!-- Añade más documentos aquí -->
         </div>
     </div>
 </Layout1>
+
+
+<script>
+    class CardDocumento extends HTMLElement {
+        constructor() {
+            super();
+
+            const documento_div = this.querySelector(".document-info");
+            const documento_base64 = documento_div.getAttribute("data-base64");
+            const nombre_archivo = documento_div.getAttribute("data-namedoc");
+
+            const byteCharacters = atob(documento_base64);
+
+            // Convierte los caracteres en bytes
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+
+            const byteArray = new Uint8Array(byteNumbers);
+
+            // Crea un objeto Blob a partir de los bytes
+            const blob = new Blob([byteArray], { type: "application/pdf" });
+
+            // Crea una URL de objeto para el Blob
+            const blobUrl = URL.createObjectURL(blob);
+
+            // Asigna la URL de descarga al enlace
+            const downloadButton = this.querySelector("button");
+            downloadButton.addEventListener("click", () => {
+                const link = document.createElement("a");
+                link.href = blobUrl;
+                link.download = nombre_archivo;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Limpia la URL de objeto cuando ya no sea necesaria
+                URL.revokeObjectURL(blobUrl);
+            });
+        }
+    }
+
+    customElements.define("card-documento", CardDocumento);
+</script>
+
 
 <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -80,7 +168,7 @@ if(!isAuth) return Astro.redirect("/login");
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-image: url("/imagenes/rojo.png");
+        background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
         background-position: center;
         background-size: cover;
         color: #fff;
@@ -88,9 +176,8 @@ if(!isAuth) return Astro.redirect("/login");
     }
     .container {
         max-width: 1000px;
-        margin: 40px auto;
+        margin: 0px auto;
         padding: 100px;
-        background-image: url("/imagenes/calro.png");
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
@@ -98,7 +185,7 @@ if(!isAuth) return Astro.redirect("/login");
     h1 {
         text-align: center;
         margin-bottom: 35px;
-        background: linear-gradient(90deg, #C40C0C,#C40C0C);
+        background: linear-gradient(90deg, #1c3999e7,#1c3999e7);
         font-size:3em;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -115,7 +202,7 @@ if(!isAuth) return Astro.redirect("/login");
     .filters {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 30px; /* Aumenta el espacio entre los filtros */
         margin-bottom: 40px;
     }
 
@@ -132,17 +219,18 @@ if(!isAuth) return Astro.redirect("/login");
     .documents-list {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 40px; /* Aumenta el espacio entre los elementos de la lista */
     }
 
     .document-item {
         display: flex;
         align-items: center;
         padding: 20px;
-        background-color: #DC8686;
+        background-image: linear-gradient(to top right, #a094e9e0, #81aff5);
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 40px; /* Aumenta el espacio inferior de cada elemento */
     }
 
     .document-item:hover {
@@ -165,12 +253,13 @@ if(!isAuth) return Astro.redirect("/login");
         margin: 0 0 10px;
         font-size: 1.3em;
         color: #020202;
+        text-align: justify; /* Añadir justificación al texto */
     }
 
     .view-btn {
         display: inline-block;
         padding: 10px 20px;
-        background-color: #ad5050;
+        background-color: #5f4be2;
         color: #fff;
         text-decoration: none;
         border-radius: 5px;
@@ -178,6 +267,6 @@ if(!isAuth) return Astro.redirect("/login");
     }
 
     .view-btn:hover {
-        background-color: #b43a2f;
+        background-color: #4731d6;
     }
 </style>

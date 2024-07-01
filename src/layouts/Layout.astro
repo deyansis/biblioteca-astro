@@ -47,18 +47,10 @@ const { title } = Astro.props;
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
-		background-size: 224px;
+		background-size: 250px;
 	}
 	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
@@ -67,7 +59,7 @@ const { title } = Astro.props;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		font-family: "Poppins", sans-serif;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	a {
@@ -119,7 +111,7 @@ const { title } = Astro.props;
 	}
 
 	.nav_logo {
-		font-size: 25px;
+		font-size: 30px;
 	}
 	.nav_item {
 		column-gap: 35px;
@@ -129,9 +121,7 @@ const { title } = Astro.props;
 	}
 	.button {
 		padding: 6px 24px;
-		border: 2px solid #fff;
 		background: transparent;
-		border-radius: 6px;
 		cursor: pointer;
 	}
 	.button:active {
@@ -216,9 +206,6 @@ const { title } = Astro.props;
 		border-bottom: 1.5px solid #aaa;
 	}
 
-	.input_box input:focus {
-		border-color: #f67f2b;
-	}
 	.input_box i {
 		position: absolute;
 		top: 50%;
@@ -321,23 +308,55 @@ const { title } = Astro.props;
 	.button {
 		margin: 0 5px;
 		padding: 8px 16px;
-		background-color: #74b9e7;
-		border: 2px solid #537dca;
+		background-image: linear-gradient(to top right, #4d39d5, #81aff5);
+		color: #000;
+		font-weight: bold;
+		text-transform: uppercase;
+		cursor: pointer;
+		border-radius: 15px;
+		transition: all 0.10s ease; /* Transición para todos los cambios */
+		transition: background-image 0.10s, color 0.10s; /* Transición para gradiente y color de texto */
+		box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Sombra inicial */
+		z-index: 10;
+	}
+
+	.button:hover {
+		transform: translateY(-20px); /* Levantar ligeramente al pasar el cursor */
+		box-shadow: 0 10px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+		color: #0b0217;
+		background-image: linear-gradient(to top right, #ffffff, #f0efef); /* Cambio de gradiente al pasar el cursor */
+	}
+
+	.button:active {
+		transform: scale(0.98); /* Reducir ligeramente al hacer clic */
+	}
+
+	.button.login-button {
+		background-image: linear-gradient(to top right, #5baaff00, #81b0f500); /* Gradiente de rojo a rosa */
+		color: #fff; /* Color del texto */
+		transition: none; /* Desactivar transiciones */
+		transform: none; /* No aplicar transformación */
+		box-shadow: none; /* Eliminar sombra en hover */
+	}
+	.button span{
+		margin-right: -15px; /* Espacio entre los iconos */
 	}
 
 	header {
-		background-color: #0d0d0e;
+		background-color: #0a0a0a;
 		color: #181717;
-		padding: 10px 0;
+		padding: 0px 0;
 		text-align: center;
 	}
+
 	/* Estilo personalizado para los iconos de los botones */
 	.button i {
-		font-size: 30px; /* Tamaño del icono */
+		font-size: 20px; /* Tamaño del icono */
 		margin-right: 20px; /* Espacio a la derecha del icono */
+		text-align: center;
 	}
 	footer {
-		background-color: #333;
+		background-color: #000000;
 		color: #fff;
 		padding: 10px 0;
 		text-align: center;

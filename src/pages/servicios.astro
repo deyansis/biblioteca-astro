@@ -153,11 +153,7 @@ import Layout1 from "../layouts/layout1.astro";
         </section>
 
         <section id="descargar" class="text-center">
-            <h3 class="text-primary">Descargar Guía en PDF</h3>
-            <p class="text-dark">
-                Para su conveniencia, puede descargar una copia en PDF de esta
-                guía haciendo clic en el siguiente enlace:
-            </p>
+           
             <a
                 href="documentos/guia de acceso al portal de investigacion.pdf"
                 class="btn btn-primary">Descargar Guía en PDF</a
@@ -165,19 +161,13 @@ import Layout1 from "../layouts/layout1.astro";
         </section>
     </main>
 
-    <footer class="bg-dark text-center text-white py-3">
-        <p>
-            Derechos de autor &copy; 2024 Biblioteca Digital Educativa
-            Vallejiana
-        </p>
-    </footer>
 </Layout1>
 
 <style>
     /* Estilos generales */
     body {
         font-family: "Arial", sans-serif;
-        background-image: url("imagenes/c2dedc.png");
+        background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
         background-position: center;
         background-size: cover;
         color: #000000;
@@ -187,18 +177,17 @@ import Layout1 from "../layouts/layout1.astro";
     }
 
     main {
-        background: #abb7d8;
         border-radius: 20px;
         padding: 100px;
-        margin-top: 20px;
+        margin-top: 0; /* Cambiar este valor a 0 para eliminar el margen superior */
         max-width: 1500px;
     }
 
     .card {
-        background-color: #7c96ab !important; /* Color de fondo de las tarjetas */
+        background-color: #fcfcfc !important; /* Color de fondo de las tarjetas */
         border: none;
         border-radius: 20px;
-        box-shadow: 0 4px 8px rgb(17, 106, 123);
+        box-shadow: 0 4px 8px #3f4044e7;
         color: #080808; /* Color de texto dentro de las tarjetas */
         font-weight: bold;
     }
@@ -210,10 +199,10 @@ import Layout1 from "../layouts/layout1.astro";
     .card-title {
         text-align: center;
         font-size: 28px;
-        color: #1e1b4b;
+        color: #1c3999e7; /* Color azul para el título de la tarjeta */
         font-weight: bold;
         text-transform: uppercase;
-        text-shadow: 2px 2px 4px #1572a1; /* Sombra en el texto */
+        
     }
 
     .card-text {
@@ -222,36 +211,29 @@ import Layout1 from "../layouts/layout1.astro";
     }
 
     .list-group-item {
-        background-color: #7c96ab; /* Color de fondo de los ítems de la lista */
+        background-color: #fcfcfc; /* Color de fondo de los ítems de la lista */
         border: none;
         padding: 10px 15px;
         color: black; /* Color de texto */
         font-weight: bold;
     }
-    .list-group-item:hover {
-        background-color: #6366f1; /* Cambio de fondo al pasar el cursor */
-    }
+
     .btn-primary {
-        background-color: rgb(109, 133, 240);
-        border-color: #1679ab;
+        
+        background-color: #1f3981;
+        border-color:  #1e59fa00;
         color: #000;
         font-weight: bold;
         padding: 10px 20px;
         border-radius: 5px;
-        transition:
-            background-color 0.3s,
-            color 0.3s;
+        transition: background-color 0.3s, color 0.3s;
         font-weight: bold;
     }
 
     .btn-primary:hover {
-        background-color: #1b1a55;
+        background-color: #1e59fa;
         color: #0a0a0a;
         font-weight: bold;
-    }
-
-    footer {
-        border-top: 2px solid #2c4e80;
     }
 
     /* Estilos específicos para la sección de introducción */
@@ -264,32 +246,45 @@ import Layout1 from "../layouts/layout1.astro";
     #intro h2 {
         text-align: center;
         font-size: 35px;
-        color: #000000;
         font-weight: bold;
         text-transform: uppercase;
-        text-shadow: 2px 2px 4px #102c46;
+        text-shadow: 2px 4px 8px #1f3981
+        
+       
     }
 
     #intro p {
-        font-size: 1.35rem; /* Tamaño del párrafo */
-        color: #080808; /* Color negro del párrafo */
-        font-weight: 300;
-        margin-top: 1rem;
+        font-size: 20px;
+        color: #080808;
         font-weight: bold;
     }
 
-    /* Estilos específicos para la sección de descarga */
-    #descargar h3 {
-        text-align: center;
-        font-size: 35px;
-        color: #000000;
+    /* Estilos de la barra de navegación */
+    .navbar {
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar-brand {
+        color: #fff;
+        font-size: 24px;
         font-weight: bold;
         text-transform: uppercase;
-        text-shadow: 2px 2px 4px #29649b;
+        text-shadow: 2px 2px 4px #1c3999e7;
     }
 
-    #descargar p {
-        color: #000000; /* Color negro */
+    .nav-link {
+        color: #fff;
         font-weight: bold;
+        font-size: 20px;
+    }
+
+    .nav-link:hover {
+        color: #f0f0f0;
+    }
+
+    .nav-item {
+        padding: 0 10px; /* Espaciado horizontal entre elementos del menú */
     }
 </style>

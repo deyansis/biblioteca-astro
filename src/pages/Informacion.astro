@@ -5,7 +5,7 @@ import Layout1 from "../layouts/layout1.astro";
 <Layout1 title="Informacion">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
    
-    <!-- Contenido de la página -->
+    
     <main>
         <section id="subtitulo1">
             <h2>Portal de investigacíon academica </h2>
@@ -61,9 +61,7 @@ import Layout1 from "../layouts/layout1.astro";
         
     </main>
 
-    <footer>
-        <p>Derechos de autor &copy; 2024 Biblioteca Digital Educativa Vallejiana</p>
-    </footer>
+  
 </Layout1>
 
 <style>
@@ -72,7 +70,7 @@ import Layout1 from "../layouts/layout1.astro";
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-image: url("imagenes/c2dedc.png");
+        background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
         background-position: center;
         background-size: cover;
         color: #fff;
@@ -80,28 +78,30 @@ import Layout1 from "../layouts/layout1.astro";
     }
 
     main {
-        background: #abb7d8;
+        
         padding: 100px 100px; /* Ajuste combinado */
-         /* Fondo oscuro con transparencia */
+       
         border-radius: 20px;
-        margin: 20px   70px;
+        margin: 0 70px 20px 70px; /* Sin margen superior, margen de 20px inferior */
     }
 
+   
+    
     section {
         padding: 20px; /* Ajustado a 20px */
         margin-bottom: 20px; /* Ajuste para reducir el espacio entre las secciones */
-        background: rgba(255, 255, 255, 0.1); /* Fondo blanco con transparencia */
+        background: #8f96f800; /* Fondo blanco con transparencia */
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor de las secciones */
+        box-shadow: 0 4px 8px rgb(81, 81, 83); /* Sombra alrededor de las secciones */
     }
 
     h2 {
         text-align: center;
         font-size: 35px;
-        color: rgb(17, 106, 123);
+        color: #1c3999e7;
         font-weight: bold; 
         text-transform: uppercase;
-        text-shadow: 2px 2px 4px #1572A1; /* Sombra en el texto */
+        
     }
 
     p {
@@ -112,10 +112,7 @@ import Layout1 from "../layouts/layout1.astro";
         font-weight: bold;
     }
 
-    footer {
-        border-top: 2px solid #ffd700;
-        background-position: center;
-    }
+
     .centered-list {
         display: flex;
         justify-content: center;
@@ -137,7 +134,7 @@ import Layout1 from "../layouts/layout1.astro";
     }
 
     .lista2{
-        color: #1572A1;
+        color: #1546a1;
         text-align: justify;
         margin: 0 20px; /* Margen izquierdo y derecho combinados */
         font-size: 18px;
@@ -152,7 +149,7 @@ import Layout1 from "../layouts/layout1.astro";
     }
 
     h2:hover, p:hover, li:hover {
-        color: #01204E; /* Cambia el color al pasar el cursor */
+        color: #030303; /* Cambia el color al pasar el cursor */
         transform: scale(1.05); /* Escala ligeramente el elemento */
     }
 

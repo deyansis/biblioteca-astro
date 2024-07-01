@@ -116,7 +116,8 @@ import Layout from "../layouts/Layout.astro";
     <div class="bg-container">
         <div
             class="bg-image"
-            style="background-image: url('imagenes/fondocont2.jpg');">
+            style="background-image: url('imagenes/fondocont2.jpg');"
+        >
         </div>
         <div
             class="bg-image"
@@ -139,6 +140,7 @@ import Layout from "../layouts/Layout.astro";
         >
         </div>
     </div>
+
     <!-- botones flotantes-->
     <div class="button-container">
         <div class="centered-buttons">
@@ -162,9 +164,12 @@ import Layout from "../layouts/Layout.astro";
             >
         </div>
     </div>
+
+    <div _ngcontent-dspace-angular-c246="" class="puntos"></div>
+
     <!-- tarjetas de contenido-->
     <section class="content-cards">
-        <h2>Temas más buscados</h2>
+        <h2>Selección de temas más buscados</h2>
         <section class="content-cards">
             <div class="container">
                 <div
@@ -186,7 +191,7 @@ import Layout from "../layouts/Layout.astro";
                     <article class="col-md-3 card">
                         <img src="imagenes/arte.jpg" class="card-img-top" />
                         <div class="card-body">
-                            <h5 class="card-title">el arte de la fotografia</h5>
+                            <h5 class="card-title">El arte de la fotografia</h5>
                             <p class="card-text">
                                 Descripción breve del tema de diseño.
                             </p>
@@ -202,9 +207,7 @@ import Layout from "../layouts/Layout.astro";
                             class="card-img-top"
                         />
                         <div class="card-body">
-                            <h5 class="card-title">
-                                Politicos e intelectuales
-                            </h5>
+                            <h5 class="card-title">Politica</h5>
                             <p class="card-text">
                                 Descripción breve acerca de algunos datos
                                 importantes sobre la politica.
@@ -215,13 +218,21 @@ import Layout from "../layouts/Layout.astro";
                             >
                         </div>
                     </article>
+                    <a
+                        href="/subirDocumentos"
+                        class="floating-button"
+                        title="Subir documentos"
+                    >
+                        <i class="uil uil-cloud-upload-alt"></i> +
+                    </a>
+
                     <article class="col-md-3 card">
                         <img
                             src="imagenes/historia.jpeg"
                             class="card-img-top"
                         />
                         <div class="card-body">
-                            <h5 class="card-title">historia nacional</h5>
+                            <h5 class="card-title">Historia nacional</h5>
                             <p class="card-text">
                                 Descripción breve sobre la historia nacional de
                                 nuestro pais.
@@ -255,8 +266,7 @@ import Layout from "../layouts/Layout.astro";
                         <img src="imagenes/web.png" class="card-img-top" />
                         <div class="card-body">
                             <h5 class="card-title">
-                                Diseño, construcción y mantenimiento de sitios
-                                web
+                                Diseño, construcción de sitios web
                             </h5>
                             <p class="card-text">
                                 Descripción breve de los diseños acerca de las
@@ -298,6 +308,7 @@ import Layout from "../layouts/Layout.astro";
 
     <style>
         /* Estilos generales */
+
         * {
             margin: 0;
             padding: 0;
@@ -352,7 +363,7 @@ import Layout from "../layouts/Layout.astro";
 
         .nav_logo {
             color: #fff;
-            font-size: 25px;
+            font-size: 20px;
         }
 
         .nav_link {
@@ -380,11 +391,20 @@ import Layout from "../layouts/Layout.astro";
         .home {
             /* para la imagen de arriba que quisiste borrar pero no se borro */
             position: relative;
-            height: 70vh;
+            height: 75vh;
             width: 100%;
             background-position: center;
             background-size: cover;
-            background-image: url("imagenes/puntos1.jpg");
+            background-image: url("imagenes/blanco.png");
+        }
+        .puntos {
+            position: relative;
+            background-image: url(imagenes/puntos.png);
+            background-repeat: repeat;
+            background-size: 55px;
+            height: 190px;
+            margin: -180px 60px 0;
+            z-index: 0;
         }
         .form_container {
             position: fixed;
@@ -506,9 +526,10 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .button-container {
-            position: absolute;
-            top: 450px; /* Ajusta este valor según sea necesario para subir los botones */
+            /* position: absolute;*/
+            top: 440px; /* Ajusta este valor según sea necesario para subir los botones */
             left: 50%;
+            z-index: 10;
         }
 
         .centered-buttons {
@@ -519,12 +540,12 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .button {
-            margin: 0 5px;
+            margin: 0 8px;
             padding: 10px 16px;
-            background-color: #d37676;
-            border: 2px solid #b06161;
-            width: 170px;
-            height: 125px; /* Ajusta la altura según sea necesario */
+            background-color: #f1f1f1;
+
+            width: 180px;
+            height: 140px; /* Ajusta la altura según sea necesario */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -533,7 +554,7 @@ import Layout from "../layouts/Layout.astro";
             font-weight: bold;
             text-decoration: none;
             font-size: 16px;
-            transition: background-color 0.3s;
+            transition: background-color 0.6s;
         }
 
         header {
@@ -548,20 +569,21 @@ import Layout from "../layouts/Layout.astro";
             margin-right: 5px; /* Espacio a la derecha del icono */
         }
         footer {
-            background-color: #333;
+            background-color: #050505;
             color: #fff;
             padding: 10px 0;
             text-align: center;
         }
 
         .content-cards h2 {
-            font-size: 60px;
+            font-size: 50px;
+            font-weight: bold;
             /* Reducir el margen inferior del título */
             text-align: center;
             color: #10141f;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Agrega una sombra al texto */
             /* Agrega un degradado de color al texto */
-            background: linear-gradient(to right, #84a0eb, #84a0eb);
+            background: linear-gradient(to right, #1f3981, #1e59fa);
             -webkit-background-clip: text; /* Aplica el degradado al texto */
             -webkit-text-fill-color: transparent; /* Hace que el texto sea transparente */
             /* Otros estilos... */
@@ -575,10 +597,16 @@ import Layout from "../layouts/Layout.astro";
                 box-shadow 0.1s ease-in-out,
                 transform 0.2s ease-in-out;
             max-width: 550px; /* Aumenta el ancho máximo de las tarjetas */
-            height: 450px; /* Ajusta la altura de las tarjetas */
+            height: 370px; /* Ajusta la altura de las tarjetas */
             border-radius: 15px; /* Bordes redondeados */
             margin-right: 30px;
-            margin-left: 10px;
+            margin-left: 20px;
+            display:flow-root;
+            
+            align-items: center;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: space-between; /* Alinea el contenido de las tarjetas */
         }
 
         .card:last-child {
@@ -592,27 +620,33 @@ import Layout from "../layouts/Layout.astro";
 
         .card-img-top {
             width: 100%;
-            height: 200px; /* Ajusta la altura de las imágenes */
+            height: 140px;
             object-fit: cover;
-            border-top-left-radius: 15px; /* Bordes redondeados para la esquina superior izquierda */
-            border-top-right-radius: 15px; /* Bordes redondeados para la esquina superior derecha */
+            border-radius: 10px 10px 0 0;
         }
 
         .card-title {
-            font-size: 20px; /* Reduce el tamaño del título */
-            margin-bottom: 8px; /* Ajusta el espacio entre el título y el texto */
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold; /* Ajusta el espacio entre el título y el texto */
         }
 
         .card-text {
-            font-size: 16px;
-            margin-bottom: 20px; /* Ajusta el espacio entre el texto y el botón */
+            font-size: 1rem;
+            color: #161616; /* Ajusta el espacio entre el texto y el botón */
+            margin-bottom: 10px; /* Agrega espacio entre el párrafo y el botón */
+            text-align: justify; /* Justifica el texto dentro de la tarjeta */
         }
 
         .card-body {
-            padding: 20px; /* Ajusta el relleno alrededor del contenido de la tarjeta */
+            padding: 10px; /* Ajusta el relleno alrededor del contenido de la tarjeta */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra los elementos horizontalmente */
         }
+
         .button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(2, 2, 2, 0.2);
         }
 
         /* Estilos del contenido */
@@ -644,7 +678,7 @@ import Layout from "../layouts/Layout.astro";
             height: 100%;
             background-position: center;
             background-size: cover;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 2s ease-in-out;
             opacity: 0;
             border-radius: 15px; /* Bordes redondeados para las imágenes dentro del contenedor */
         }
@@ -652,6 +686,43 @@ import Layout from "../layouts/Layout.astro";
         /* Imagen activa */
         .bg-image.active {
             opacity: 2;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px; /* Ancho del botón */
+            height: 60px; /* Alto del botón */
+
+            background-color: #4d39d5;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%; /* Hace que el botón sea un círculo */
+            padding: 0; /* Elimina el relleno interior del botón */
+            font-size: 30px;
+            line-height: 60px; /* Centra el texto verticalmente */
+            text-align: center; /* Centra el texto horizontalmente */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            text-decoration: none;
+        }
+
+        .floating-button:hover {
+            background-color: #8677ec;
+        }
+
+        .btn-primary {
+            background-color: #4d39d5;
+            border-color: #8677ec;
+            width: 50%; /* Opcional: asegura que el ancho del botón sea del 100% del contenedor */
+            margin-top: auto; /* Empuja el botón hacia abajo dentro del contenedor */
+            display: block;
+        }
+        .btn-primary:hover {
+            background-color: #8a7fce;
+            border-color: #8a7fce;
         }
     </style>
 </Layout>

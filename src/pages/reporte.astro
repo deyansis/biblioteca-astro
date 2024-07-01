@@ -20,7 +20,7 @@ import Chart from "chart.js/auto";
   <!-- Contenido de la página -->
   <main class="container my-5">
     <section id="intro" class="text-center mb-5">
-      <h2 class="display-4 text-primary mt-3">
+      <h2 class="display-4 text-primary mt-3" style="color: #1c3999e7;">
         Reportes de Temas Más Buscados
       </h2>
       <p class="lead text-dark">
@@ -32,7 +32,7 @@ import Chart from "chart.js/auto";
     <section id="reportes" class="mb-5">
       <div class="card bg-light text-dark">
         <div class="card-body">
-          <h3 class="card-title text-primary">Temas Más Buscados</h3>
+          <h3 class="card-title" style="color: #1c3999e7;">Temas Más Buscados</h3>
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -46,7 +46,7 @@ import Chart from "chart.js/auto";
                 <td>2023</td>
               </tr>
               <tr>
-                <td>el arte de la fotografia</td>
+                <td>El arte de la fotografia</td>
                 <td>2022</td>
               </tr>
               <tr>
@@ -71,7 +71,7 @@ import Chart from "chart.js/auto";
     <section id="grafico" class="mb-5">
       <div class="card bg-light text-dark">
         <div class="card-body">
-          <h3 class="card-title text-primary">Gráfico de Temas Más Buscados</h3>
+          <h3 class="card-title" style="color: #1c3999e7;">Gráfico de Temas Más Buscados</h3>
           <div class="chart-container">
             <canvas id="temasChart"></canvas>
           </div>
@@ -80,16 +80,11 @@ import Chart from "chart.js/auto";
     </section>
 
     <section id="descargar" class="text-center">
-      <h3 class="text-primary">Descargar Reporte en PDF</h3>
       <a href="documentos/reporte.pdf" class="btn btn-primary"
         >Descargar Guía en PDF</a
       >
     </section>
   </main>
-
-  <footer class="bg-dark text-center text-white py-3">
-    <p>Derechos de autor &copy; 2024 Biblioteca Digital Educativa Vallejiana</p>
-  </footer>
 
   <script is:inline>
     document.addEventListener("DOMContentLoaded", function () {
@@ -158,24 +153,26 @@ import Chart from "chart.js/auto";
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-    background-image: url("imagenes/c2dedc.png");
+    background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
   }
 
   main {
-    background: #abb7d8;
     border-radius: 20px;
     padding: 100px;
-    margin-top: 20px;
+    margin-top: 0; /* Eliminar el margen superior */
     max-width: 1500px;
+  }
+
+  #intro {
+    margin-top: 0; /* Asegurarse de eliminar el margen superior de la sección de introducción */
   }
 
   #intro h2 {
     text-align: center;
     font-size: 35px;
-    color: rgb(17, 106, 123);
+    color: #1c3999e7;
     font-weight: bold;
     text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgb(17, 106, 123); /* Sombra en el texto */
   }
 
   #intro p {
@@ -193,23 +190,31 @@ import Chart from "chart.js/auto";
     font-weight: bold;
   }
 
-  /* Estilos específicos para el encabezado */
-  #intro h2 {
-    margin-top: 0; /* Reduce el margen superior */
+  .card-title {
+    color: #1c3999e7 !important; /* Añadir !important para forzar el estilo */
   }
-  #reportes. card-title {
+
+  /* Estilos específicos para el encabezado */
+  #reportes h3.card-title,
+  #descargar h3 {
+    color: #1c3999e7 !important; /* Añadir !important para forzar el estilo */
+  }
+
+  #reportes {
     color: #04070a; /* Color del título */
     font-weight: bold;
     text-transform: uppercase; /* Convertir texto a mayúsculas */
     margin-bottom: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra del texto */
   }
+  
   .table {
     margin-top: 20px;
     border-collapse: separate;
     border-spacing: 0 10px; /* Espaciado entre filas */
   }
-  #reportes.table thead th {
+  
+  #reportes .table thead th {
     background-color: #000000; /* Color de fondo del encabezado */
     color: #fff; /* Color del texto del encabezado */
     border: none;
@@ -217,6 +222,7 @@ import Chart from "chart.js/auto";
     text-align: left;
     font-weight: bold;
   }
+  
   #reportes .table tbody td {
     background-color: #ffffff; /* Color de fondo de las celdas */
     color: #030303; /* Color del texto */
@@ -226,10 +232,9 @@ import Chart from "chart.js/auto";
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de las celdas */
     border-radius: 5px; /* Bordes redondeados */
   }
-  #reportes .table tbody tr:hover td {
-    background-color: #a5b4fc; /* Color de fondo al pasar el cursor */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el cursor */
-  }
+  
+
+
   /* Estilos para la sección de descarga */
   #descargar {
     text-align: center;
@@ -239,15 +244,15 @@ import Chart from "chart.js/auto";
   #descargar h3 {
     text-align: center;
     font-size: 30px;
-    color: rgb(83, 92, 145); /* Color del título */
+    color: #1c3999e7; /* Color del título */
     font-weight: bold;
     text-shadow: 2px 2px 4px rgb(2, 5, 5);
     margin-top: 1rem; /* Margen superior */
   }
 
   #descargar a.btn-primary {
-    background-color: rgb(87, 115, 240);
-    border-color: 3px #1679ab;
+    background-color: #1f3981;
+    border-color: 3px #1679ab00;
     color: #ffffff; /* Color del texto */
     font-weight: bold;
     padding: 10px 20px;
@@ -258,7 +263,8 @@ import Chart from "chart.js/auto";
   }
 
   #descargar a.btn-primary:hover {
-    background-color: #074173; /* Color de fondo del botón al pasar el cursor */
+    background-color: #1e59fa; /* Color de fondo del botón al pasar el cursor */
     color: #ffffff; /* Color del texto al pasar el cursor */
+    border-color: 3px #1679ab00;
   }
 </style>

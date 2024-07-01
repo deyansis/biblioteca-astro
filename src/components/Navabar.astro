@@ -7,6 +7,8 @@ const { isAuth, user } = storeUser.getState();
 <header class="header">
     <nav class="nav">
         <a href="/" class="nav_logo">UCV </a>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
         <ul class="nav_item">
             <li class="nav_item">
@@ -29,13 +31,18 @@ const { isAuth, user } = storeUser.getState();
         {isAuth && <h4 style="color:white;">{user.nombre}</h4>}
         {
             isAuth ? (
-                <a class="button" href="/login/logout">
-                    Cerrar Sesion
+            <a href="/login"  class="button login-button"> 
+             <span><i class="fas fa-sign-out-alt"></i></span>
+             <span><i class="fas fa-user"></i></span> 
                 </a>
             ) : (
-                <a class="button" href="/login">
-                    Iniciar Sesion
+                
+                <a href="/login"  class="button login-button"> 
+                <span><i class="fas fa-sign-in-alt"></i></span> 
+                <span><i class="fas fa-user"></i></span>
                 </a>
+           
+                 
             )
         }
     </nav>

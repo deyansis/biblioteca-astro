@@ -1,0 +1,340 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const URL_API = import.meta.env.URL_API;
+
+/* let message = "";
+let messageType = "";
+let showVerificationCodeInput = false;
+let verificationCodeSent = false; */
+
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
+const isRegistered = async (email) => {
+    try {
+        const response = await fetch(`${URL_API}/user/email`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        if (response.ok) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+
+
+    } catch (error) {
+        return false;
+    }
+};
+
+const seendMail = async (email) => {
+    try {
+        const response = await fetch(`${URL_API}/user/seend/resetpassword`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+        });
+        
+        const data = await response.json()
+        Astro.cookies.set('code_recovery', data.data.code, { path: '/' });
+
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+const errors = { email: "" };
+const succes = { email: "", code: "" };
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        const email = data.get("emailForgot");
+
+        if (typeof email !== "string" || !isValidEmail(email)) {
+            errors.email += "Email no es valido. ";
+        } else if (!(await isRegistered(email))) {
+            errors.email += "Email no registrado. ";
+        }
+
+        if (await isRegistered(email)) {
+            succes.email = "Código de verificación enviado correctamente.";
+            await seendMail(email);
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+}
+
+// if (Astro.request.method === "POST") {
+
+// try {
+// const data = await Astro.request.formData();
+// const email = data.get("emailForgot");
+
+// console.log(email)
+
+// if (!verificationCodeSent) {
+//     // Enviar código de verificación
+//     const response = await fetch(`${URL_API}/user/${email}`, {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//         email: email,
+//     }),
+//     });
+
+//     const responseData = await response.json();
+
+//     if (response.ok) {
+//     message = "Código de verificación enviado correctamente.";
+//     messageType = "success";
+//     verificationCodeSent = true;
+//     showVerificationCodeInput = true;
+//     } else {
+//     message = "Error al enviar el código de verificación: " + responseData.message;
+//     messageType = "error";
+//     }
+// } else {
+//     // Verificar código de verificación
+//     const verificationCode = data.get("verificationCode");
+
+//     const response = await fetch(`${URL_API}/password/forgot/verify`, {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//         email: email,
+//         verificationCode: verificationCode,
+//     }),
+//     });
+
+//     const responseData = await response.json();
+
+//     if (response.ok) {
+//     message = "Código de verificación correcto. Puede restablecer su contraseña.";
+//     messageType = "success";
+//     } else {
+//     message = "Error al verificar el código de verificación: " + responseData.message;
+//     messageType = "error";
+//     }
+// }
+// } catch (error) {
+// message = "Error al enviar el código de verificación. Inténtelo de nuevo, más tarde.";
+// messageType = "error";
+// console.error("Error al enviar el código de verificación:", error);
+// }
+// }
+---
+
+<Layout title="Restablecer Contraseña">
+    <main class="page-login">
+        <div class="container" id="container">
+            <div class="form-container">
+                <h1>Restablecer contraseña</h1>
+                <p>
+                    {
+                        succes.email
+                            ? "Ingresa el codigo de verificacion"
+                            : " Ingresa tu correo electrónico para el restablecimiento de tu contraseña"
+                    }
+                </p>
+
+                {
+                    !succes.email && (
+                        <form method="post">
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                name="emailForgot"
+                                required
+                            />
+
+                            {errors.email && <p>{errors.email}</p>}
+                            {succes.email && <p>{succes.email}</p>}
+                            <button >Enviar</button>
+                        </form>
+                    )
+                }
+
+                {
+                    succes.email && (
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Código de Verificación"
+                                name="verificationCode"
+                                input-data-code
+                            />
+
+                            <p msg-event style="color:red;" />
+
+                            <button button-send-code>Verificar</button>
+                        </div>
+
+                      
+                    )
+                }
+
+                <!-- {
+                    message && (
+                        <div class={`message ${messageType}`}>{message}</div>
+                    )
+                } -->
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    import { navigate } from "astro:transitions/client";
+
+    const $btnSendCodeVerification = document.querySelector("[button-send-code]");
+    const $inputCodeVerif = document.querySelector("[input-data-code]");
+    const $msgEn = document.querySelector("[msg-event]")
+
+    let code;
+
+    $inputCodeVerif.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement;
+
+        code = target.value;
+    });
+
+    $btnSendCodeVerification.addEventListener("click", () => {
+        if (code.length != 6) {
+
+            $msgEn.textContent = 'No es un codigo valido.'
+
+            return
+        };
+        navigate('/login/cambioCon')
+    });
+
+</script>
+
+
+
+<style>
+    .page-login {
+        background: #f6f5f7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: -0px 0 50px;
+    }
+
+    .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow:
+            0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 450px;
+        max-width: 100%;
+        min-height: 400px;
+    }
+
+    .form-container {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .form-container input {
+        background: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+    }
+
+    .form-container button {
+        border-radius: 20px;
+        border: 1px solid #ff396c;
+        background: #ff396c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .form-container button:active {
+        transform: scale(0.95);
+    }
+
+    .form-container button:focus {
+        outline: none;
+    }
+
+    .message {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .message.error-verification {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .form-container h1 {
+        color: #070707;
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 18px; /* Agregamos un margen inferior de 20px */
+    }
+
+    .form-container p {
+        color: #070707;
+        text-align: center;
+        font-size: 17px;
+        margin-bottom: 10px; /* Agregamos un margen superior de 20px */
+    }
+</style>

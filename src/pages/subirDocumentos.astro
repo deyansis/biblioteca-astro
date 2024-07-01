@@ -1,0 +1,316 @@
+---
+import ModalAddCarrea from "../components/subirDocumentos/Modal.astro";
+import Layout1 from "../layouts/layout1.astro";
+import { storeUser } from "../store/user.store";
+const { isAuth, user } = storeUser.getState();
+
+export interface ITipoDocumento {
+  tipo_documento: string;
+  id: number;
+}
+
+export interface ICarrera {
+  carrera: string;
+  id: number;
+}
+
+if (!isAuth) return Astro.redirect("/login");
+
+const URL_API = import.meta.env.URL_API;
+
+const tipo_documentos: ITipoDocumento[] = await fetch(
+  `${URL_API}/documento/tipo_documento`,
+)
+  .then((response) => {
+    if (!response.ok) {
+      console.error("Error en la solicitud");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    return data.data.tipo_documento;
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    return null;
+  });
+
+const carreras: ICarrera[] = await fetch(`${URL_API}/carrera/all`)
+  .then((response) => {
+    if (!response.ok) {
+      console.error("Error en la solicitud");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    return data.data.carreras;
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    return null;
+  });
+---
+
+<Layout1 title="Subir Documentos">
+  <main class="container">
+    <formulario-documentos data-user={user.id}>
+      <div class="wrapper" x-data="documentoUpload">
+        <h1 class="heading">Subir Documentos</h1>
+        <div class="form">
+          <div class="form-group">
+            <label for="authorName" class="label">Nombre del autor:</label>
+            <input
+              type="text"
+              id="authorName"
+              name="authorName"
+              required
+              class="input-field"
+              x-model="authorName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="documentType" class="label">Tipo de documento:</label>
+            <select
+              id="documentType"
+              name="documentType"
+              required
+              class="input-field"
+              x-model="documentType"
+            >
+              <option value="">Seleccione un tipo de documento</option>
+              {
+                tipo_documentos.map((tipo) => (
+                  <option value={tipo.id}>
+                    {tipo.tipo_documento.toUpperCase()}
+                  </option>
+                ))
+              }
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="career" class="label">Carrera:</label>
+            <select
+              id="career"
+              name="career"
+              required
+              class="input-field"
+              x-model="career"
+            >
+              <option value="">Seleccione su carrera</option>
+              {
+                carreras.map((carrera) => (
+                  <option value={carrera.id}>
+                    {carrera.carrera.toUpperCase()}
+                  </option>
+                ))
+              }
+            </select>
+
+            <ModalAddCarrea />
+          </div>
+
+          <div class="form-group">
+            <label for="year" class="label">Año del documento:</label>
+            <input
+              type="date"
+              id="year"
+              name="year"
+              required
+              class="input-field"
+              x-model="year"
+            />
+          </div>
+          <div class="form-group">
+            <label for="document" class="label">Selecciona un documento: </label>
+            <input
+              type="file"
+              id="document"
+              name="document"
+              accept=".pdf,.doc,.docx"
+              required
+              class="input-field"
+              @change="handleFileChange"
+            />
+          </div>
+          <button type="submit" @click.prevent="addNewDocumento" class="button"
+            >Subir Documento</button
+          >
+        </div>
+
+        <div id="success-message" class="success-message" ></div>
+        <div id="solicitud" class="solicitud">
+          <a href="verificarEstado" class="button">Ver Estado de la Solicitud</a
+          >
+        </div>
+      </div>
+    </formulario-documentos>
+  </main>
+</Layout1>
+
+<style>
+  /* Estilos CSS */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+    line-height: 1.6;
+  }
+
+  main {
+    max-width: 1500px;
+    margin: 0px auto;
+    padding: 100px 200px;
+  }
+
+  .heading {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1f3981;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+    color: #050505;
+  }
+
+  .label {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #030303;
+  }
+
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .button {
+    background-color: #1f3981;
+    border-color: #1e59fa00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.5s;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    background-color: #1e59fa;
+  }
+
+  .success-message {
+    background-color: #6f94fa;
+    color: white;
+    text-align: center;
+    padding: 0px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 18px;
+    display: none;
+    margin-left: 10%;
+  }
+
+  .solicitud {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+  }
+</style>
+
+<script>
+  import Alpine from "alpinejs";
+  import { navigate } from "astro:transitions/client";
+
+  class FormularioDocumentos extends HTMLElement {
+    constructor() {
+      super();
+
+      const user_id = this.dataset.user;
+
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("documentoUpload", () => ({
+          authorName: null,
+          documentType: null,
+          fileNameDocument: null,
+          career: null,
+          year: null,
+          document: null,
+          user: user_id,
+          error: null,
+
+          handleFileChange(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Verificar el tamaño del archivo
+            if (file.size > 10 * 1024 * 1024) {
+              this.error = "El archivo es demasiado grande (máximo 10MB)";
+              return;
+            } else {
+              this.error = null;
+            }
+
+            const reader = new FileReader();
+            reader.onload = () => {
+              const result = reader.result;
+              if (typeof result === "string") {
+                this.document = result.split(",")[1];
+              }
+            };
+            reader.readAsDataURL(file);
+
+            this.fileNameDocument = file.name;
+          },
+
+          async addNewDocumento(e: MouseEvent) {
+            e.preventDefault();
+            await fetch(`http://localhost:9000/documento/create`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                autor: this.authorName,
+                nombre_archivo: this.fileNameDocument,
+                year: this.year,
+                archivo_base64: this.document,
+                user_id: this.user,
+                carrera_id: this.career,
+                tipo_documento_id: this.documentType,
+              }),
+            })
+              .then(() => {
+                navigate("/");
+              })
+              .catch((err) => console.error(err));
+          },
+        }));
+      });
+    }
+  }
+
+  customElements.define("formulario-documentos", FormularioDocumentos);
+</script>
