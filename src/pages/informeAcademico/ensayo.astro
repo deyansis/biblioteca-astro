@@ -19,7 +19,7 @@ const documentos: IDocumento[] = await fetch(
         return response.json();
     })
     .then((data) => {
-        return data.data.documentos;
+        return data.data.documentos.filter(doc => doc.estado === 'aprobado')
     })
     .catch((error) => {
         console.error("Error:", error);

@@ -1,217 +1,345 @@
 ---
 import Layout1 from "../layouts/layout1.astro";
+
+export interface Comment {
+    nombre_usuario: string;
+    comentario: string;
+    id: number;
+}
+
+const comentarios: Comment[] = await fetch(
+    `${import.meta.env.URL_API}/comentario/all`,
+)
+    .then((res) => res.json())
+    .then((data) => data.data.comentarios)
+    .catch((err) => console.error(err));
 ---
 
 <Layout1 title="Foro de Comentarios">
-    <div class="container">
+    <div class="container" x-data="comentarioData">
         <h1>Foro de Comentarios</h1>
         <p>Deja tus comentarios sobre los documentos y la plataforma.</p>
 
         <div class="comment-form">
             <h2>Dejar un comentario</h2>
-            <form id="commentForm">
+            <form @submit.prevent="submitForm">
                 <div class="form-group">
                     <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required />
-                </div>
-                <div class="form-group">
-                    <label for="document"> Tipo de documento:</label>
                     <input
                         type="text"
-                        id="document"
-                        name="document"
-                        list="document-list"
+                        id="name"
+                        name="name"
+                        x-model="form.name"
                         required
                     />
-                    <datalist id="document-list">
-                        <!-- Las opciones de documentos se añadirán aquí dinámicamente -->
-                    </datalist>
                 </div>
                 <div class="form-group">
                     <label for="comment">Comentario:</label>
-                    <textarea id="comment" name="comment" required></textarea>
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        x-model="form.comment"
+                        required></textarea>
                 </div>
                 <button type="submit">Enviar</button>
+                <div class="mb-10" x-show="isSubmitted">
+                    <h2 class="text-green-600 font-bold">
+                        Se Creo el comentario
+                    </h2>
+                </div>
             </form>
         </div>
 
         <div class="comments-list">
             <h2>Comentarios</h2>
-            <ul id="comments">
-                <!-- Los comentarios se añadirán aquí -->
-            </ul>
+
+            <section class="section">
+                <div class="container">
+                    <div class="timeline">
+                        {comentarios.length === 0 && <p>No hay comentarios</p>}
+
+                        {
+                            comentarios.length > 0 &&
+                                comentarios.map((comentario) => (
+                                    <div class="timeline-item">
+                                        <div class="timeline-header">
+                                            <div class="icon-wrapper">
+                                                <div class="icon">
+                                                    <svg
+                                                        class="svg-icon"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="16"
+                                                        height="16"
+                                                    >
+                                                        <path d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-title">
+                                                {comentario.nombre_usuario}
+                                            </div>
+                                        </div>
+                                        <div class="timeline-content">
+                                            {comentario.comentario}
+                                        </div>
+                                    </div>
+                                ))
+                        }
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </Layout1>
 
-<script is:inline>
-    document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOM completamente cargado");
-    
-    const commentForm = document.getElementById("commentForm");
-    const commentsList = document.getElementById("comments");
+<script>
+    import Alpine from "alpinejs";
+    import { navigate } from "astro:transitions/client";
 
-    const documents = [
-        "Explora nuestros documentos y descubre el fascinante mundo del Diseño de sistemas de información",
-        "Impacto del diseño de afiches publicitarios en la percepción visual del público en la empresa Comercial Vicky-Callao 2023",
-        "Calidad del registro de historia clínica en consultorios externos, del Establecimiento de Salud La Unión, Piura, 2020",
-        "Violencia intrafamiliar y depresión en mujeres usuarias de un centro de salud del distrito de Ancón, 2023",
-        "Economía circular y desarrollo sustentable en el sector agricultura en la provincia de Barranca, 2022",
-        "Economía circular y desarrollo sustentable en el sector agricultura en la provincia de Barranca, 2022",
-        "Rediseño de un sitio web de la Agencia Formia en supercepción de los usuarios de Lima – 2022"
-    ]; // Ejemplo de documentos predefinidos
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("comentarioData", () => ({
+            form: {
+                name: "",
+                comment: "",
+            },
 
-    const dataList = document.getElementById("document-list");
-    documents.forEach((doc) => {
-        const option = document.createElement("option");
-        option.value = doc;
-        dataList.appendChild(option);
+            isSubmitted: false,
+
+            async submitForm() {
+                await fetch(
+                    `${import.meta.env.PUBLIC_URL_API}/comentario/create`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+
+                        credentials: "include",
+                        body: JSON.stringify({
+                            comentario: this.form.comment,
+                            nombre_usuario: this.form.name,
+                        }),
+                    },
+                )
+                    .then(() => {
+                        this.isSubmitted = true;
+                    })
+                    .finally(() => {
+                        setTimeout(() => {
+                            this.isSubmitted = false;
+                            navigate(location.href);
+                        }, 3000);
+                    });
+            },
+        }));
     });
-
-    commentForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        console.log("Formulario enviado");
-
-        const name = document.getElementById("name").value;
-        const document = document.getElementById("document").value;
-        const comment = document.getElementById("comment").value;
-
-        console.log(`Nombre: ${name}, Documento: ${document}, Comentario: ${comment}`);
-
-        const commentItem = document.createElement("li");
-        commentItem.innerHTML = `<strong>${name}</strong> sobre <em>${document}</em>: <p>${comment}</p>`;
-
-        commentsList.appendChild(commentItem);
-        console.log("Comentario añadido a la lista");
-
-        // Limpiar el formulario
-        commentForm.reset();
-    });
-});
-
 </script>
 
 <style>
- body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
-    background-position: center;
-    background-size: cover;
-    color: #030303;
-    line-height: 1.6;
-    margin-top: 0; /* Asegura que no haya margen superior */
-}
+    .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6rem 1rem;
+    }
 
+    .container {
+        width: 100%;
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
 
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 4rem;
+        position: relative;
+    }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 100px; /* Puedes ajustar según tu diseño */
-    background-color: rgba(171, 183, 216, 0);
-    border-radius: 10px;
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
-    max-width: 1500px;
-}
+    .timeline::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin-left: 1.25rem;
+        transform: translateX(-1px);
+        height: 100%;
+        width: 0.125rem;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            #cbd5e1,
+            transparent
+        );
+    }
 
-h1,
-h2 {
-    text-align: center;
-    font-size: 30px;
-    color: #1f3981;
-    font-weight: bold;
-    text-transform: uppercase; 
-    margin-top: 0; /* Asegura que no haya margen superior */
-    margin-bottom: 10px; /* Ajuste opcional para espaciado */
-}
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+    }
 
+    .timeline-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
 
-p {
-    text-align: center;
-    font-size: 1.3em;
-    margin-bottom: 50px;
-    color: black;
-    
-}
+    .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: #fff;
+        border-radius: 9999px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
 
-.comment-form {
-    margin-bottom: 40px;
-}
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.form-group {
-    margin-bottom: 20px;
-}
+    .svg-icon {
+        fill: #10b981;
+    }
 
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 1.2em;
-}
+    .timeline-title {
+        color: #64748b;
+        margin-left: 3.5rem;
+        font-weight: bold;
+    }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    font-size: 1.4em;
-}
+    .timeline-content {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        margin-left: 3.5rem;
+        max-width: 44rem;
+    }
+</style>
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    
-}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: linear-gradient(to top right, #f8f8f8, #f9fbfd);
+        background-position: center;
+        background-size: cover;
+        color: #030303;
+        line-height: 1.6;
+        margin-top: 0; /* Asegura que no haya margen superior */
+    }
 
-.form-group textarea {
-    height: 100px;
-}
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 100px; /* Puedes ajustar según tu diseño */
+        background-color: rgba(171, 183, 216, 0);
+        border-radius: 10px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        max-width: 1500px;
+    }
 
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #1f3981;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    h1,
+    h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #1f3981;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 0; /* Asegura que no haya margen superior */
+        margin-bottom: 10px; /* Ajuste opcional para espaciado */
+    }
 
-button:hover {
-    background-color: #1e59fa;
-}
+    p {
+        text-align: center;
+        font-size: 1.3em;
+        margin-bottom: 50px;
+        color: black;
+    }
 
-.comments-list ul {
-    list-style: none;
-    padding: 0;
-}
+    .comment-form {
+        margin-bottom: 40px;
+    }
 
-.comments-list li {
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
-}
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-.comments-list strong {
-    display: block;
-    font-size: 10em;
-    color: #333;
-}
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
 
-.comments-list em {
-    color: #666;
-}
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: 1.4em;
+    }
 
-.comments-list p {
-    margin: 5px 0 0;
-    color: #555;
-}
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #007bff;
+    }
 
+    .form-group textarea {
+        height: 100px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #1f3981;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #1e59fa;
+    }
+
+    .comments-list ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .comments-list li {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .comments-list strong {
+        display: block;
+        font-size: 10em;
+        color: #333;
+    }
+
+    .comments-list em {
+        color: #666;
+    }
+
+    .comments-list p {
+        margin: 5px 0 0;
+        color: #555;
+    }
 </style>
